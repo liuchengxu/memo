@@ -1,5 +1,8 @@
-Pairty
-======
+---
+title: "Parity"
+permalink: /parity/
+excerpt: "parity"
+---
 
 ### 快速同步
 

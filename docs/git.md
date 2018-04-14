@@ -1,5 +1,8 @@
-Git
-===
+---
+title: "Git"
+permalink: /git/
+excerpt: "git"
+---
 
 #### fork 的仓库与上游同步
 

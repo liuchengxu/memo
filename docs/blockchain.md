@@ -1,5 +1,8 @@
-Blockchain
-==========
+---
+title: "Blockchain"
+permalink: /blockchain/
+excerpt: "blockchain"
+---
 
 - 李嘉图合约：[Ricardian contracts — legally binding agreements on the blockchain](https://medium.com/legalthingsone/ricardian-contracts-legally-binding-agreements-on-the-blockchain-4c103f120707)
 - [Smart Contracts — 3 limitations of a self-enforcing agreement](https://medium.com/legalthingsone/smart-contracts-3-limitations-of-a-self-enforcing-agreement-257cfbabeff5)

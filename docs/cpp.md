@@ -1,5 +1,8 @@
-Cpp
-===
+---
+title: "Cpp"
+permalink: /cpp/
+excerpt: "cpp"
+---
 
 ### Why cast an unused function parameter value to void?
 

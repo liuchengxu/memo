@@ -1,5 +1,8 @@
-Vim
-===
+---
+title: "Vim"
+permalink: /vim/
+excerpt: "vim"
+---
 
 ### quickfix
 
