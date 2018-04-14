@@ -1,4 +1,4 @@
 Shell
 =====
 
-- https://explainshell.com/
+- [explainshell](https://explainshell.com/)

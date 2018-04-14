@@ -22,12 +22,19 @@ $ docker container ls --all
 $ docker container rm {containerID}
 ```
 
-- http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html
+- [Docker 入门教程](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)
 
-#### 在 Ubuntu16.04 的 docker 里面安装 vim
+### 在 Ubuntu16.04 的 docker 里面安装 vim
 
 ```bash
 # 先执行 update 再安装软件
 $ apt update
 $ apt install vim
 ```
+
+### 配置镜像加速器
+
+由于网络问题，国内从默认的 Docker Hub 拉取镜像可能会有困难，“重新配置源”。
+
+- [镜像加速器](https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html)
+- [Docker 中国官方镜像加速](https://www.docker-cn.com/registry-mirror)

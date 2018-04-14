@@ -25,8 +25,8 @@ $ git rebase upstream/master
 $ git push origin master
 ```
 
-- https://help.github.com/articles/configuring-a-remote-for-a-fork/
-- https://help.github.com/articles/syncing-a-fork/
+- [Configuring a remote for a fork](https://help.github.com/articles/configuring-a-remote-for-a-fork/)
+- [Syncing a fork](https://help.github.com/articles/syncing-a-fork/)
 
 #### 更新 submodule
 

@@ -1,7 +1,7 @@
 Vim
 ===
 
-#### quickfix
+### quickfix
 
 ```vim
 :copen " Open the quickfix window
@@ -12,7 +12,7 @@ Vim
 :cc 2  " Jump to the second error in the quickfix window
 ```
 
-- https://stackoverflow.com/questions/1747091/how-do-you-use-vims-quickfix-feature
+- [How do you use vim's quickfix feature?](https://stackoverflow.com/questions/1747091/how-do-you-use-vims-quickfix-feature)
 
 ```vim
 " In the quickfix window, <CR> is used to jump to the error under the
@@ -20,12 +20,12 @@ Vim
 autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 ```
 
-- https://superuser.com/questions/815416/hitting-enter-in-the-quickfix-window-doesnt-work
+- [Hitting enter in the quickfix window doesn't work](https://superuser.com/questions/815416/hitting-enter-in-the-quickfix-window-doesnt-work)
 
-#### YouCompleteMe
+### YouCompleteMe
 
 - 使用 gocode 补全时，先要在项目目录下面执行 `go install` 才能补全第三方库。
 
-#### 正则表达式
+### 正则表达式
 
-- https://mrlongx.com/index.php/2018/01/18/vim-regexp/
+- [vim正则表达式](https://mrlongx.com/index.php/2018/01/18/vim-regexp/)
