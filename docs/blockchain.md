@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Blockchain"
 permalink: /blockchain/
 excerpt: "blockchain"

@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Vim"
 permalink: /vim/
 excerpt: "vim"

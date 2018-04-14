@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Git"
 permalink: /git/
 excerpt: "git"

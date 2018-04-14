@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Docker"
 permalink: /docker/
 excerpt: "docker"

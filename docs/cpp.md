@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Cpp"
 permalink: /cpp/
 excerpt: "cpp"

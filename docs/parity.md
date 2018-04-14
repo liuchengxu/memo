@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Parity"
 permalink: /parity/
 excerpt: "parity"

@@ -1,4 +1,5 @@
 ---
+layout: "posts"
 title: "Shell"
 permalink: /shell/
 excerpt: "shell"
