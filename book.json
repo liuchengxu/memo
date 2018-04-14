@@ -1,0 +1,14 @@
+{
+    "root": "docs",
+    "structure": {
+        "readme": "README.md"
+    },
+    "title": "Memo",
+    "description": "",
+    "author": "liuchengxu",
+    "output.name": "site",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "plugins": [],
+    "pluginsConfig": {}
+}
