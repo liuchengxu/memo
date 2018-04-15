@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Build the project.
+hugo # if using a theme, replace by `hugo -t <yourtheme>`
+
+git add -A
+
+# Commit changes.
+git commit -m "Site updated: $(date +%Y-%m-%d-%s)"
+
+git push origin master
