@@ -1,8 +1,11 @@
 ---
 layout: "posts"
 title: "Parity"
-permalink: /parity/
+permalink: /parity
 excerpt: "parity"
+date: 2018-04-15
+toc: true
+categories: parity
 ---
 
 ### 快速同步

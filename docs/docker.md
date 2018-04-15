@@ -1,8 +1,11 @@
 ---
 layout: "posts"
 title: "Docker"
-permalink: /docker/
+permalink: /docker
 excerpt: "docker"
+date: 2018-04-15
+toc: true
+categories: docker
 ---
 
 ```bash

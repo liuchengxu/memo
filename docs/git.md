@@ -1,8 +1,11 @@
 ---
 layout: "posts"
 title: "Git"
-permalink: /git/
+permalink: /git
 excerpt: "git"
+date: 2018-04-15
+toc: true
+categories: git
 ---
 
 #### fork 的仓库与上游同步

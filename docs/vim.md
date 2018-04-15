@@ -1,8 +1,11 @@
 ---
 layout: "posts"
 title: "Vim"
-permalink: /vim/
+permalink: /vim
 excerpt: "vim"
+date: 2018-04-15
+toc: true
+categories: vim
 ---
 
 ### quickfix

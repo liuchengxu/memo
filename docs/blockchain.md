@@ -1,8 +1,11 @@
 ---
 layout: "posts"
 title: "Blockchain"
-permalink: /blockchain/
+permalink: /blockchain
 excerpt: "blockchain"
+date: 2018-04-15
+toc: true
+categories: blockchain
 ---
 
 - 李嘉图合约：[Ricardian contracts — legally binding agreements on the blockchain](https://medium.com/legalthingsone/ricardian-contracts-legally-binding-agreements-on-the-blockchain-4c103f120707)

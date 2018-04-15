@@ -1,8 +1,11 @@
 ---
 layout: "posts"
 title: "Cpp"
-permalink: /cpp/
+permalink: /cpp
 excerpt: "cpp"
+date: 2018-04-15
+toc: true
+categories: cpp
 ---
 
 ### Why cast an unused function parameter value to void?
