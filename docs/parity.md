@@ -15,3 +15,9 @@ $ parity --warp --no-ancient-blocks --no-serve-light --max-peers 250 --snapshot-
 ```
 
 - `--force-ui`: Parity 1.10 以后，钱包变成了一个独立的应用，默认关闭浏览器的 `localhost:8180` 访问。
+
+### Parity 1.10.1-beta
+
+`--warp-barrier [BLOCK]` 指定最小块号，防止客户端同步落后很多的 snapshot。
+
+- https://github.com/paritytech/parity/releases/tag/v1.10.1

@@ -36,3 +36,7 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 ### 正则表达式
 
 - [vim正则表达式](https://mrlongx.com/index.php/2018/01/18/vim-regexp/)
+
+### Reddit
+
+- https://www.reddit.com/r/vim/comments/8d9bh1/vimrc_review_thread_40/
