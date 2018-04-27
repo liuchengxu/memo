@@ -40,3 +40,9 @@ $ git push origin master
 ```bash
 $ git submodule update --init --recursive
 ```
+
+#### remote branch missing
+
+`--depth` --> `--single-branch`
+
+- https://stackoverflow.com/questions/20338500/git-repository-lost-its-remote-branches

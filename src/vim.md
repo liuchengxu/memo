@@ -40,3 +40,20 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 ### Reddit
 
 - https://www.reddit.com/r/vim/comments/8d9bh1/vimrc_review_thread_40/
+
+### help
+
+- `:h index`: 默认快捷键。
+
+    ```
+    1. 插入模式				|insert-index|
+    2. 普通模式				|normal-index|
+       2.1. 文本对象			|objects|
+       2.2. 窗口命令			|CTRL-W|
+       2.3. 方括号命令			|[|
+       2.4. 'g' 开头的命令			|g|
+       2.5. 'z' 开头的命令			|z|
+    3. 可视模式				|visual-index|
+    4. 命令行编辑				|ex-edit-index|
+    5. EX 命令				|ex-cmd-index|
+    ```

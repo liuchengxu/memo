@@ -1,0 +1,5 @@
+[book]
+authors = ["Liu-Cheng Xu"]
+multilingual = false
+src = "src"
+title = "memo"

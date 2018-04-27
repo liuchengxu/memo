@@ -1,5 +1,11 @@
-Misc
-====
+---
+layout: "posts"
+title: "Misc"
+permalink: /misc
+excerpt: "misc"
+toc: true
+---
+
 
 #### 翻墙
 
@@ -41,3 +47,37 @@ telegram --> Privacy and Security --> 127.0.0.1 1086
 
 - https://teddysun.com/489.html
 - https://teddysun.com/525.html
+
+#### err_unsafe_port
+
+- https://superuser.com/questions/188058/which-ports-are-considered-unsafe-on-chrome
+
+#### ssh 免密码登录
+
+```bash
+$ ssh-copy-id user@remote-host
+```
+
+- http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html
+
+#### docker 访问主机
+
+- https://blog.csdn.net/ownfire/article/details/48006893
+
+#### 自动化 GitHub release
+
+- https://github.com/tcnksm/ghr
+
+#### docker从容器中怎么访问宿主机
+
+- https://blog.csdn.net/ownfire/article/details/48006893
+
+#### Mongo
+
+```bash
+$ docker run --name monitor-mongo -p 27017:27017 -d mongo
+```
+
+#### 找到公网 IP
+
+- https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7

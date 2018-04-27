@@ -41,3 +41,5 @@
     - row
     - column
 
+
+- 账户命名规则：https://github.com/EOSIO/eos/issues/56
