@@ -45,3 +45,28 @@ $ apt install vim
 
 - [镜像加速器](https://yeasy.gitbooks.io/docker_practice/content/install/mirror.html)
 - [Docker 中国官方镜像加速](https://www.docker-cn.com/registry-mirror)
+
+### 提交镜像
+
+- 对 container 中修改并退出
+- sudo docker commit 614122c0aabb aoct/apache2
+
+
+### docker mongo 地址
+
+在 docker 连接 mongodb ，地址不能写 127.0.0.1
+
+- `docker inspect eosforce | grep IP`
+- 本机的局域网 IP 也可以
+
+
+### docker 没有 netstat 如何查看
+
+
+```bash
+$ docker inspect -f '{{.State.Pid}}' container_name_or_id
+
+$ sudo nsenter -t Pid -n netstat
+```
+
+- https://stackoverflow.com/questions/40350456/docker-any-way-to-list-open-sockets-inside-a-running-docker-container

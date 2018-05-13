@@ -8,6 +8,8 @@
 
 - [#142 Preparing light client structure](https://github.com/paritytech/polkadot/pull/142)
 
+- [#149 node-key CLI option](https://github.com/paritytech/polkadot/pull/149)
+
 #### Slides
 
 - [Parity Substrate](http://slides.com/paritytech/paritysubstrate#/)

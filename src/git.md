@@ -46,3 +46,16 @@ $ git submodule update --init --recursive
 `--depth` --> `--single-branch`
 
 - https://stackoverflow.com/questions/20338500/git-repository-lost-its-remote-branches
+
+#### git hook
+
+- `chmod +x .git/hooks/pre-commit` 脚本要有执行权限 git 才会执行
+
+#### 切到
+
+
+```
+$ git branch -a
+
+$ git checkout -b slim origin/slim
+```

@@ -26,6 +26,14 @@
 
 - [Quick comparison of blockchain scaling solutions](https://twitter.com/liamihorne/status/989302230065991680)
 
+- [Stablecoins: designing a price-stable cryptocurrency](https://hackernoon.com/stablecoins-designing-a-price-stable-cryptocurrency-6bf24e2689e5)
+
+- [The Mystery Behind Block Time](https://medium.facilelogin.com/the-mystery-behind-block-time-63351e35603a)
+
+- [Money in the modern economy:an introduction](https://www.bankofengland.co.uk/-/media/boe/files/quarterly-bulletin/2014/money-in-the-modern-economy-an-introduction.pdf?la=en&hash=E43CDFDBB5A23D672F4D09B13DF135E6715EEDAC)
+
+- [Blockchain Oracles Will Make Smart Contracts Fly](https://hackernoon.com/oracles-help-smart-contracts-resolve-subjective-events-d81639d8291c)
+
 
 #### fork
 
@@ -62,3 +70,8 @@
 - [https://medium.com/@Vlad_Zamfir](https://medium.com/@Vlad_Zamfir)
 
 - [https://medium.com/@mycoralhealth](https://medium.com/@mycoralhealth)
+
+
+- [https://blog.oraclize.it/@oraclize](https://blog.oraclize.it/@oraclize)
+
+- [sharding](https://www.reddit.com/r/ethereum/comments/8g1q55/vitalik_teases_sharding_release_on_twitter/dy85pq0/)
