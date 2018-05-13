@@ -90,3 +90,7 @@ ssh-copy-id node@myserver.com
 单独的脚本可以 exit，bashrc 中不要 exit，否则会导致当前的 shell 进程结束。
 
 - https://stackoverflow.com/questions/39419818/terminal-freezes-after-exit-command-in-bash-script
+
+## 终端颜色
+
+- https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux/5947788#5947788
