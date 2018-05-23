@@ -94,3 +94,29 @@ ssh-copy-id node@myserver.com
 ## 终端颜色
 
 - https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux/5947788#5947788
+- https://linux.101hacks.com/ps1-examples/prompt-color-using-tput/
+
+```bash
+for (( i = 0; i < 17; i++ ));
+do echo "$(tput setaf $i)This is ($i)$(tput sgr0)";
+done
+```
+
+## Bash Prompt
+
+- https://github.com/oviung/git-colored-prompt
+
+## tail
+
+```bash
+# 将进程日志重定向到一个文件
+$ nodeos > nodeos.log
+# The -f option causes tail to not stop when end of file is reached, but rather to wait for additional data to be appended to the input.  The -f option is ignored if the standard input is a pipe, but not if it is a FIFO.
+$ tail -f nodeos.log
+```
+
+- https://www.linuxquestions.org/questions/linux-general-1/ultimate-prompt-and-bashrc-file-4175518169/
+
+## openwrt 路由器翻墙
+
+- https://github.com/softwaredownload/openwrt-fanqiang

@@ -122,3 +122,9 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     - ycmd: tab 选择，enter 换行
 
 - https://github.com/lymslive/vimllearn
+
+- https://www.reddit.com/r/vim/comments/8jb9r7/complete_latex_suite_in_vim/dyzddkg/
+
+- https://github.com/echuraev/translate-shell.vim
+
+- https://jamesbvaughan.com/markdown-pandoc-notes/

@@ -70,3 +70,17 @@ $ sudo nsenter -t Pid -n netstat
 ```
 
 - https://stackoverflow.com/questions/40350456/docker-any-way-to-list-open-sockets-inside-a-running-docker-container
+
+- [Dockerfile与Docker构建流程解读](https://xuxinkun.github.io/2016/03/06/dockerfile-and-docker-build/)
+
+
+### docker 更新 container 参数
+
+```bash
+docker container update --help
+```
+
+```bash
+# docker build 时默认会利用 cache，如果想要完全重新 build，不用使用 cache --no-cache
+docker build --no-cache . -t ***
+```

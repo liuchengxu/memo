@@ -48,3 +48,13 @@ if [[ $url =~ .git$ ]]; then
   url="${url%.*}"
 fi
 ```
+
+### 当前函数名
+
+```bash
+func() {
+    echo "Current function: $FUNCNAME"
+}
+```
+
+- https://unix.stackexchange.com/questions/261305/how-to-determine-callee-function-name-in-a-script

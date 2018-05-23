@@ -10,6 +10,7 @@
 
 - [#149 node-key CLI option](https://github.com/paritytech/polkadot/pull/149)
 
-#### Slides
+- [#150 light client](https://github.com/paritytech/polkadot/pull/150#discussion_r189261080)
 
+#### Slides 
 - [Parity Substrate](http://slides.com/paritytech/paritysubstrate#/)

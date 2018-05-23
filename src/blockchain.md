@@ -34,6 +34,7 @@
 
 - [Blockchain Oracles Will Make Smart Contracts Fly](https://hackernoon.com/oracles-help-smart-contracts-resolve-subjective-events-d81639d8291c)
 
+- [The State of Cryptocurrency Mining](https://blog.sia.tech/the-state-of-cryptocurrency-mining-538004a37f9b?nsukey=gy%20vHoDVv9nTcmMI3f%20cCCwu5c73L3NB%2Fog16BWS4CLZu4ZK6Di3UUruE22xaEbcretfSpdTZxc32cY%20XlElGk2DjsYeFPVIuY6qSUr4I4XbEWz28m3IYEO5UWp%2FL8pM60dMbURLZqAgCEiz7JGsCEiDWKSwU1ARvx4d9HavJVbUiujiSzoO1ZDGNVF%20ls%20%20u73TtpVBPxq08kPRWrPFQg%3D%3D)
 
 #### fork
 
@@ -71,7 +72,19 @@
 
 - [https://medium.com/@mycoralhealth](https://medium.com/@mycoralhealth)
 
+- [https://medium.com/@bytemaster](https://medium.com/@bytemaster)
+
 
 - [https://blog.oraclize.it/@oraclize](https://blog.oraclize.it/@oraclize)
 
 - [sharding](https://www.reddit.com/r/ethereum/comments/8g1q55/vitalik_teases_sharding_release_on_twitter/dy85pq0/)
+
+- [EOS DPOS BFT](https://github.com/EOSIO/eos/issues/2718)
+
+- [Why Blockchain is Hard](https://medium.com/@jimmysong/why-blockchain-is-hard-60416ea4c5c)
+
+- [How to Scale Ethereum: Sharding Explained](https://medium.com/prysmatic-labs/how-to-scale-ethereum-sharding-explained-ba2e283b7fce)
+
+- [ON PROFITABILITY OF SELFISH MINING](https://webusers.imj-prg.fr/~ricardo.perez-marco/publications/articles/OnSelfishMining20.pdf)
+
+- https://github.com/ZtesoftCS/go-ethereum-code-analysis
