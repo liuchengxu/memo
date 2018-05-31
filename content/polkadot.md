@@ -12,5 +12,7 @@
 
 - [#150 light client](https://github.com/paritytech/polkadot/pull/150#discussion_r189261080)
 
+- [#113 Miminal parachain framework](https://github.com/paritytech/polkadot/pull/113)
+
 #### Slides 
 - [Parity Substrate](http://slides.com/paritytech/paritysubstrate#/)

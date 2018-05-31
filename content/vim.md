@@ -128,3 +128,5 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 - https://github.com/echuraev/translate-shell.vim
 
 - https://jamesbvaughan.com/markdown-pandoc-notes/
+
+- https://github.com/jbgutierrez/vim-better-comments

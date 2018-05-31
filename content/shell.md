@@ -1,8 +1,7 @@
 ---
 layout: "posts"
 title: "Shell"
-permalink: /shell
-excerpt: "shell"
+permalink: /shell excerpt: "shell"
 date: 2018-04-15
 toc: true
 categories: shell
@@ -120,3 +119,30 @@ $ tail -f nodeos.log
 ## openwrt 路由器翻墙
 
 - https://github.com/softwaredownload/openwrt-fanqiang
+
+## kcptun 加速 ss
+
+- https://blog.kuoruan.com/110.html
+
+## MySQL 导入 database schema
+
+- https://stackoverflow.com/questions/26015521/mysql-import-database-schema
+
+## scp vs rsync
+
+- https://stackoverflow.com/questions/20244585/how-does-scp-differ-from-rsync
+
+
+## awesome shell
+
+- https://github.com/agarrharr/awesome-cli-apps
+    - https://github.com/agarrharr/awesome-cli-apps#database
+    - https://github.com/agarrharr/awesome-cli-apps#command-line-learning
+    - https://github.com/agarrharr/awesome-cli-apps#data-manipulation
+
+- https://github.com/alebcay/awesome-shell
+    - https://github.com/alebcay/awesome-shell#guides
+
+- https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md#%E5%8D%95%E8%A1%8C%E8%84%9A%E6%9C%AC
+
+

@@ -36,6 +36,8 @@
 
 - [The State of Cryptocurrency Mining](https://blog.sia.tech/the-state-of-cryptocurrency-mining-538004a37f9b?nsukey=gy%20vHoDVv9nTcmMI3f%20cCCwu5c73L3NB%2Fog16BWS4CLZu4ZK6Di3UUruE22xaEbcretfSpdTZxc32cY%20XlElGk2DjsYeFPVIuY6qSUr4I4XbEWz28m3IYEO5UWp%2FL8pM60dMbURLZqAgCEiz7JGsCEiDWKSwU1ARvx4d9HavJVbUiujiSzoO1ZDGNVF%20ls%20%20u73TtpVBPxq08kPRWrPFQg%3D%3D)
 
+- [The Ethereum-blockchain size has exceeded 1TB, and yes, it’s an issue](https://hackernoon.com/the-ethereum-blockchain-size-has-exceeded-1tb-and-yes-its-an-issue-2b650b5f4f62)
+
 #### fork
 
 - https://en.bitcoin.it/wiki/Hardfork
@@ -63,19 +65,11 @@
 - [Blockchain Proof-of-Work Is a Decentralized Clock](https://grisha.org/blog/2018/01/23/explaining-proof-of-work/)
 - [https://news.ycombinator.com/item?id=16862077](https://news.ycombinator.com/item?id=16862077)
 
+- [Replay Attacks Explained](https://bitcointechtalk.com/replay-attacks-explained-e3d6d2ea0ab2)
+
 - https://bitcoin.stackexchange.com/questions/12954/why-the-timestamp-component-of-the-block-header
 - https://www.reddit.com/r/Bitcoin/comments/2r04xi/genesis_block_and_following_blocks_timestamps_are/
 - https://bitcoin.stackexchange.com/questions/786/is-the-timestamp-in-the-genesis-block-relevant
-
-- [https://medium.com/@jimmysong](https://medium.com/@jimmysong)
-- [https://medium.com/@Vlad_Zamfir](https://medium.com/@Vlad_Zamfir)
-
-- [https://medium.com/@mycoralhealth](https://medium.com/@mycoralhealth)
-
-- [https://medium.com/@bytemaster](https://medium.com/@bytemaster)
-
-
-- [https://blog.oraclize.it/@oraclize](https://blog.oraclize.it/@oraclize)
 
 - [sharding](https://www.reddit.com/r/ethereum/comments/8g1q55/vitalik_teases_sharding_release_on_twitter/dy85pq0/)
 
@@ -88,3 +82,14 @@
 - [ON PROFITABILITY OF SELFISH MINING](https://webusers.imj-prg.fr/~ricardo.perez-marco/publications/articles/OnSelfishMining20.pdf)
 
 - https://github.com/ZtesoftCS/go-ethereum-code-analysis
+
+- [https://medium.com/@jimmysong](https://medium.com/@jimmysong)
+
+- [https://medium.com/@Vlad_Zamfir](https://medium.com/@Vlad_Zamfir)
+
+- [https://medium.com/@mycoralhealth](https://medium.com/@mycoralhealth)
+
+- [https://medium.com/@bytemaster](https://medium.com/@bytemaster)
+
+- [https://blog.oraclize.it/@oraclize](https://blog.oraclize.it/@oraclize)
+
