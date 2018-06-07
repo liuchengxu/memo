@@ -40,6 +40,12 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 - 使用 gocode 补全时，先要在项目目录下面执行 `go install` 才能补全第三方库。
 
+### 检查是否支持某 event
+
+```vim
+:echo exists('##TerminalOpen')
+```
+
 ### 正则表达式
 
 - [vim正则表达式](https://mrlongx.com/index.php/2018/01/18/vim-regexp/)
@@ -121,6 +127,11 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     - auto-completion: tab 选择，enter 换行
     - ycmd: tab 选择，enter 换行
 
+- fugitive
+    - `Gblame`
+
+- https://www.reddit.com/r/vim/comments/8oti4x/does_vim_slow_down_depending_on_the_programming/
+
 - https://github.com/lymslive/vimllearn
 
 - https://www.reddit.com/r/vim/comments/8jb9r7/complete_latex_suite_in_vim/dyzddkg/
@@ -130,3 +141,9 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 - https://jamesbvaughan.com/markdown-pandoc-notes/
 
 - https://github.com/jbgutierrez/vim-better-comments
+
+- https://www.reddit.com/r/vim/comments/8ohlgv/plugin_manager_support_for_gitlab/
+
+- https://github.com/inkarkat/vim-ingo-library
+
+- https://github.com/hauleth/asyncdo.vim

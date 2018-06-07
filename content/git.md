@@ -87,6 +87,8 @@ $ git checkout -b slim origin/slim
 
 ```bash
 # 与 <x> 为基准
+# git diff base +- 都是以 base 为基准显示
+# 想要查看 v1 相对于 v2 有什么差别，那么 git diff v2 v1
 $ git diff <x> <x+∆x>
 
 # 比较最新提交的上一笔提交与最新提交
@@ -119,4 +121,11 @@ Hi chainpool/eosdev! You've successfully authenticated, but GitHub does not prov
 
 ```bash
 $ git log --follow file
+```
+
+#### 终端打 tag
+
+```bash
+$ git tag -a v0.8.0
+$ git push origin v0.8.0
 ```

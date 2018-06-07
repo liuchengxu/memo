@@ -146,3 +146,52 @@ $ tail -f nodeos.log
 - https://github.com/jlevy/the-art-of-command-line/blob/master/README-zh.md#%E5%8D%95%E8%A1%8C%E8%84%9A%E6%9C%AC
 
 
+## 在文件第一行插入
+
+- https://unix.stackexchange.com/questions/99350/how-to-insert-text-before-the-first-line-of-a-file
+
+```bash
+# -i[SUFFIX] -ibak 原地修改源文件 并以 bak 命名结尾备份源文件
+# '1i[insert content]'
+#     - i   行前插入
+#     - a   行后插入
+#     - c   行替换
+$ sed -ibak '1iaddress,name,key,asset' snapshot.csv
+```
+
+## find
+
+```bash
+
+$ find /
+
+# 在用户目录下查找所有的 JPEG 文件
+$ find ~ -name '*jpg'
+
+# 同上，但是不区分大小写
+$ find ~ -iname '*jpg'
+
+
+# -o 表示 ||，查找 jpeg 或者 jpg
+# 注意括号加 (, 前后留空格
+$ find ~ \( -iname '*jpeg' -o -iname '*jpg' \)
+
+# -type f 指定查找文件
+$ find ~ \( -iname '*jpeg' -o -iname '*jpg' \) -type f
+
+# -type d 指定查找目录
+$ find ~ \( -iname '*jpeg' -o -iname '*jpg' \) -type d
+
+# 缩小到上周更改的文件
+# ctime 文件状态更改时间   cmin
+# mtime 修改时间           mmin
+# atime 访问时间           amin
+$ find ~ \( -iname '*jpeg' -o -iname '*jpg' \) -type f -mtime -7
+
+# 在 /var/log 查找大于 1 GB 的文件
+$ find /var/log -size +1G
+
+# 在 /data 找到 xlc 拥有的文件
+$ find /data/ -owner xlc
+
+```
