@@ -27,6 +27,15 @@ $ docker container ls --all
 
 # 终止容器运行，但是容器仍会占据磁盘空间，使用 rm 删除
 $ docker container rm {containerID}
+
+# 镜像的历史来源
+$ docker history image_name
+
+# 来看某一层产生的具体信息
+$ docker inspect -f layer
+
+
+docker run -it --name space-vim liuchengxu/space-vim bash
 ```
 
 - [Docker 入门教程](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)
@@ -71,6 +80,8 @@ $ sudo nsenter -t Pid -n netstat
 
 - https://stackoverflow.com/questions/40350456/docker-any-way-to-list-open-sockets-inside-a-running-docker-container
 
+### Dockerfile
+
 - [Dockerfile与Docker构建流程解读](https://xuxinkun.github.io/2016/03/06/dockerfile-and-docker-build/)
 
 
@@ -84,3 +95,33 @@ docker container update --help
 # docker build 时默认会利用 cache，如果想要完全重新 build，不用使用 cache --no-cache
 docker build --no-cache . -t ***
 ```
+
+### 在一个运行中的 container  中执行命令
+
+```bash
+# docker exec --help
+$ docker exec container_name ls ~
+
+$ docker exec -it container_name bash
+```
+
+```bash
+$ docker run --name space-vim -it ubuntu:16.04
+```
+
+### 停止一个 restart=always 的 docker
+
+- https://github.com/moby/moby/issues/10032
+
+```bash
+$ docker update --restart=no my-container
+
+
+$ docker stop $(docker ps -a -q) &
+$ docker update --restart=no $(docker ps -a -q) &
+$ systemctl restart docker
+```
+
+
+- https://www.itcodemonkey.com/article/3935.html
+

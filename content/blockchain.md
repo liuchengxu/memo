@@ -4,6 +4,10 @@
 
 - [Blockchain vs. Distributed Ledger Technologies](https://media.consensys.net/blockchain-vs-distributed-ledger-technologies-1e0289a87b16)
 
+- [Understanding Blockchain Fundamentals, Part 3: Delegated Proof of Stake](https://medium.com/loom-network/understanding-blockchain-fundamentals-part-3-delegated-proof-of-stake-b385a6b92ef)
+
+- [The Psychology of Money](http://www.collaborativefund.com/blog/the-psychology-of-money/)
+
 ## Cryptography
 
 - [Faster Bulletproofs with Ristretto & AVX2](https://blog.chain.com/faster-bulletproofs-with-ristretto-avx2-29450b4490cd)
@@ -86,6 +90,8 @@
 
 ### Bitcoin
 
+- [Leaf-Node weakness in Bitcoin Merkle Tree Design](https://bitslog.wordpress.com/2018/06/09/leaf-node-weakness-in-bitcoin-merkle-tree-design/)
+- [SDLerner](https://twitter.com/SDLerner/status/1005541449507721218)
 - [Lessons on Bubbles From Bitcoin](https://www.bloomberg.com/view/articles/2018-04-10/bitcoin-was-prone-to-bubbles-until-bears-could-bet-against-it)
 
 - [Explanation of what an OP_RETURN transaction looks like](https://bitcoin.stackexchange.com/questions/29554/explanation-of-what-an-op-return-transaction-looks-like)
@@ -114,4 +120,6 @@
 
 - [https://blog.oraclize.it/@oraclize](https://blog.oraclize.it/@oraclize)
 
+- https://github.com/guanzhi/Blockchain
 
+- https://zhuanlan.zhihu.com/p/38582224

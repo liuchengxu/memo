@@ -1,6 +1,6 @@
 # Polkadot
 
-## GitHub
+## Issue
 
 - [#131: Light-client friendly storage tracking](https://github.com/paritytech/polkadot/issues/131)
 
@@ -16,9 +16,11 @@
 
 - [#113 Miminal parachain framework](https://github.com/paritytech/polkadot/pull/113)
 
-- https://github.com/polkadot-js
+## Repo
 
 - https://github.com/w3f/polkadot-overview
+
+- https://github.com/polkadot-js
 
 ## Articles
 
@@ -38,3 +40,39 @@
 
 - 0xd328428cb8913d6a448bca27a626cc1d937c04a618030a7d35dd77f10fcc9858
 - 5DDjW9wWFaYsw8VPcjoXyq8whG5XWhVRkLpwesxF6BGB2RAa
+
+## wiki
+
+### Governance
+
+- https://github.com/paritytech/polkadot/wiki/Governance
+- https://www.youtube.com/watch?v=VsZuDJMmVPY&feature=youtu.be&t=24734
+
+- an amorphous state-transition function stored on-chain
+- a platform-neutral intermediate language(i.e. WebAssembly)
+- serveral on-chain voting mechanisims
+    - referenda with adaptive super-majority thresholds
+    - batch approval voting
+
+> A key and unfailing rule is:
+>
+> All changes to the protocol must be agreed upon by stake-weighted referendum; >50% of stake will always command the network
+
+- Council
+    选举
+    - represent passive stakeholders
+
+- Rederenda
+    全民公决
+    - proposal `set_code`
+
+    absention votes
+
+
+### Spec
+
+- consensus `hard-coded`
+
+    - PBFT
+    - Zyzzyva [Zyzzyva: Speculative Byzantine Fault Tolerance](http://www.cs.cornell.edu/lorenzo/papers/kotla07Zyzzyva.pdf)
+    - Aardvark [Making Byzantine Fault Tolerant Systems Tolerate Byzantine Faults](https://www.usenix.org/legacy/event/nsdi09/tech/full_papers/clement/clement.pdf)

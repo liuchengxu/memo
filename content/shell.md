@@ -195,3 +195,5 @@ $ find /var/log -size +1G
 $ find /data/ -owner xlc
 
 ```
+
+- https://unix.stackexchange.com/questions/209068/how-do-i-delete-the-first-n-lines-and-last-line-of-a-file-using-shell-commands

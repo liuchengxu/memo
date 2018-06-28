@@ -11,6 +11,9 @@
 cleos push action eosio.token maping '["'$user'", '$id']' -p eosio > /dev/null
 ```
 
+- https://github.com/dylanaraps/pure-bash-bible
+
+
 ### 按行读取文件
 
 ```bash
@@ -58,3 +61,7 @@ func() {
 ```
 
 - https://unix.stackexchange.com/questions/261305/how-to-determine-callee-function-name-in-a-script
+
+### curl 下载脚本并执行
+
+- https://stackoverflow.com/questions/4642915/passing-parameters-to-bash-when-executing-a-script-fetched-by-curl

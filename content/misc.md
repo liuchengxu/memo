@@ -81,3 +81,32 @@ $ docker run --name monitor-mongo -p 27017:27017 -d mongo
 #### 找到公网 IP
 
 - https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7
+
+#### web
+
+- https://github.com/wxyyxc1992/Web-Series
+
+#### mac 多开微信
+
+```bash
+$ open -n /Applications/WeChat.app/Contents/MacOS/WeChat
+```
+
+#### nginx
+
+- https://www.itcodemonkey.com/article/4359.html
+
+#### tcp
+
+- https://www.v2ex.com/t/466168#reply27
+
+TCPL：《C程序设计语言》
+CPPP：《C++ Primer》
+SICP：《计算机程序的构造和解释》
+CSAPP：《深入理解计算机系统》
+MOS：《现代操作系统》
+CAAQA：《计算机体系结构-量化研究方法》
+GOF：《设计模式：可复用面向对象软件的基础》
+CLRS：《算法导论》
+- TAOCP：《计算机程序设计艺术》
+- Modern operating systems, C++ Primer

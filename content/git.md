@@ -129,3 +129,22 @@ $ git log --follow file
 $ git tag -a v0.8.0
 $ git push origin v0.8.0
 ```
+
+- https://www.learnenough.com/git-tutorial#sec-prompt_branches_and_tab_completion
+
+#### 带有 .gitsubmodules 的 repo 删除 .git 后 git submodule 失效
+
+- https://stackoverflow.com/questions/3336995/git-will-not-init-sync-update-new-submodules
+
+#### 如果 git 仓库有 submodule 直接 .git 会有很多问题，重置提交历史
+
+- https://gist.github.com/heiswayi/350e2afda8cece810c0f6116dadbe651
+
+#### 修改 release 对应的 commit
+
+```bash
+git tag -f -a <tagname>
+git push -f --tags
+```
+
+- https://stackoverflow.com/questions/24849362/change-connected-commit-on-release-github

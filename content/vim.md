@@ -79,12 +79,21 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 - https://github.com/junegunn/fzf.vim/issues/573
 
+
+### 使用本地 vim 打开远程文件
+
+```bash
+# 在本地打开 192.168.1.6 指定文件 ~/.bashrc
+$ vim scp://eos@192.168.1.6/~/.bashrc
+```
+
 ### Modern Vim
 
 - https://www.reddit.com/r/vim/comments/8gsefa/modern_vim_is_out/
 
 ### tab 补全
 
+如果只有补全插件的话，其实比较简单，一般的做法就是判断是否有弹出菜单，有的话，就更改一下 tab, shift-tab, cr 这些键的变为，变为 c-n, c-p, <c-y><cr>，也就是下一个补全项，上一个补全项
 
     ```vim
     function! spacevim#util#ExpandSnippetOrCarriageReturn()
@@ -104,7 +113,16 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     - ycmd: tab 选择，enter 换行
     - `auto-completion`: tab 上下选择，enter 换行
 
+```vim
+"i_CTRL-R
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+inoremap <expr> CleverTab()
+```
+
 ------
+
+- https://zhuanlan.zhihu.com/p/38150203
 
     ```vim
     function! spacevim#util#ExpandSnippetOrCarriageReturn()
@@ -147,3 +165,16 @@ autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 - https://github.com/inkarkat/vim-ingo-library
 
 - https://github.com/hauleth/asyncdo.vim
+
+- https://github.com/vim-scripts/grep.vim/blob/master/plugin/grep.vim
+
+- https://www.reddit.com/r/vim/comments/8rcbd0/what_was_the_latest_vim_feature_youve_discovered/
+
+- https://gitlab.com/yramagicman/stow-dotfiles/blob/master/vim/.vim/autoload/status.vim
+
+
+#### cdo, cfdo
+
+- windo, tabdo, bufdo, cdo, ldo, cfdo, lfdo
+
+- http://vim.wikia.com/wiki/Implement_your_own_interactive_finder_without_plugins
