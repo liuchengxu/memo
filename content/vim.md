@@ -117,6 +117,7 @@ $ vim scp://eos@192.168.1.6/~/.bashrc
 "i_CTRL-R
 inoremap <Tab> <C-R>=CleverTab()<CR>
 
+
 inoremap <expr> CleverTab()
 ```
 
@@ -178,3 +179,27 @@ inoremap <expr> CleverTab()
 - windo, tabdo, bufdo, cdo, ldo, cfdo, lfdo
 
 - http://vim.wikia.com/wiki/Implement_your_own_interactive_finder_without_plugins
+
+- https://github.com/LucHermitte/lh-vim-lib
+
+#### if quickfix window exists
+
+- https://www.reddit.com/r/vim/comments/5ulthc/how_would_i_detect_whether_quickfix_window_is_open/
+
+#### index
+
+- CTRL-G
+- CTRL-I
+- CTRL-O
+- CTRL-]
+- #
+- %
+- ,
+- ZZ
+- f
+- m
+- q
+
+#### haskell
+
+- https://github.com/Twinside/vim-haskellConceal

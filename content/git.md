@@ -1,10 +1,6 @@
 ---
 layout: "posts"
 title: "Git"
-permalink: /git
-excerpt: "git"
-date: 2018-04-15
-toc: true
 categories: git
 ---
 
@@ -148,3 +144,30 @@ git push -f --tags
 ```
 
 - https://stackoverflow.com/questions/24849362/change-connected-commit-on-release-github
+
+
+#### 如何 fork 一个 repo 到 private 仓库
+
+
+```bash
+# 首先 clone 要 fork 的 repo
+$ git clone https://github.com/forked-repo
+
+# remote 添加 私有 repo
+$ git remote add xlc https://github.com/private-repo
+
+# 接下来可以 git push --all xlc
+# https://stackoverflow.com/questions/4181861/src-refspec-master-does-not-match-any-when-pushing-commits-in-git/44163991#44163991
+$ git push --all xlc
+
+################
+# 或者在一开始的时候就使用 --bare，--mirror 进行 clone 和 push
+# https://stackoverflow.com/questions/10065526/github-how-to-make-a-fork-of-public-repository-private
+$ git clone --bare https://github.com/exampleuser/public-repo.git
+$ cd public-repo.git
+$ git push --mirror https://github.com/yourname/private-repo.git
+```
+
+#### sync repo
+
+- https://gist.github.com/CristinaSolana/1885435

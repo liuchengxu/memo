@@ -76,3 +76,5 @@
     - PBFT
     - Zyzzyva [Zyzzyva: Speculative Byzantine Fault Tolerance](http://www.cs.cornell.edu/lorenzo/papers/kotla07Zyzzyva.pdf)
     - Aardvark [Making Byzantine Fault Tolerant Systems Tolerate Byzantine Faults](https://www.usenix.org/legacy/event/nsdi09/tech/full_papers/clement/clement.pdf)
+
+- substrate https://www.youtube.com/watch?v=iUMZyL5kTwc&feature=youtu.be
