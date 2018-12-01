@@ -188,10 +188,12 @@ inoremap <expr> CleverTab()
 
 #### index
 
-- CTRL-G
-- CTRL-I
-- CTRL-O
+- CTRL-G: 显示当前文件名和位置
+- CTRL-I: forward jump list
+- CTRL-O: back jump list
 - CTRL-]
+- CTRL-V: 块操作
+- CTRL-X: 光标处数字减 N
 - #
 - %
 - ,
@@ -203,3 +205,35 @@ inoremap <expr> CleverTab()
 #### haskell
 
 - https://github.com/Twinside/vim-haskellConceal
+
+
+#### startuptime
+
+```bash
+for i in $(seq 1 50); do nvim --startuptime /dev/stdout +q | tail -n1; done | awk '{ sum += $1 } END { print sum / NR }'
+```
+
+#### Practise
+
+- https://stackoverflow.com/questions/253380/how-do-i-insert-text-at-beginning-of-a-multi-line-selection-in-vi-vim
+
+- https://github.com/autozimu/LanguageClient-neovim/issues/379
+
+
+- https://github.com/vim/vim/issues/2191  `buffer wiped out`
+
+
+
+
+#### tab space
+
+将现有的 4 个 space 换成 2 个 space:
+
+```
+将每 2 个空格变成一个 tab
+:setlocal ts=2 sts=2 noet | retab!
+将每个 tab 变成 4 个 space
+:setlocal ts=2 sts=2 et | retab
+```
+
+- https://stackoverflow.com/questions/16888658/change-2-space-indent-to-4-space-in-vim

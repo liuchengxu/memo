@@ -4,6 +4,10 @@ title: "Git"
 categories: git
 ---
 
+#### tutorial
+
+- https://learngitbranching.js.org/?demo
+
 #### fork 的仓库与上游同步
 
 - 原仓库 https://github.com/paritytech/polkadot
@@ -73,7 +77,7 @@ $ git submodule update --init --recursive
 #### 切到本地尚不存在的远端分支
 
 
-```
+```bash
 $ git branch -a
 
 $ git checkout -b slim origin/slim
@@ -109,7 +113,7 @@ Hi chainpool/eosdev! You've successfully authenticated, but GitHub does not prov
 
 - https://developer.github.com/v3/guides/using-ssh-agent-forwarding/
 
-#### 保留空白目录 ignore 该目录下所有内容
+#### 保留空白目录并 ignore 该目录下所有内容
 
 - https://stackoverflow.com/questions/115983/how-can-i-add-an-empty-directory-to-a-git-repository
 
@@ -148,7 +152,6 @@ git push -f --tags
 
 #### 如何 fork 一个 repo 到 private 仓库
 
-
 ```bash
 # 首先 clone 要 fork 的 repo
 $ git clone https://github.com/forked-repo
@@ -171,3 +174,37 @@ $ git push --mirror https://github.com/yourname/private-repo.git
 #### sync repo
 
 - https://gist.github.com/CristinaSolana/1885435
+
+#### git merge --squash
+
+```bash
+git checkout master
+git merge --squash bugfix
+git commit
+```
+
+https://stackoverflow.com/questions/5308816/how-to-use-git-merge-squash
+
+#### git merge/rebase 解决冲突
+
+git merge:
+
+```bash
+# 在 merge 时，ours 指代的是当前分支, 扔掉当前分支改动
+$ git checkout --ours .
+
+# theirs 代表需要被合并的分支, 扔掉待合并分支改动
+$ git checkout --theirs .
+```
+
+git rebase:
+
+```
+# 在 rebase 过程中，ours 指向了待合并分支, 扔掉待合并分支改动
+$ git checkout --ours
+
+# theirs 却是当前分支
+$ git checkout --theirs
+```
+
+- https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/

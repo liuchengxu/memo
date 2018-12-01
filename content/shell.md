@@ -204,3 +204,10 @@ $ find /data/ -owner xlc
 ```bash
 $ sudo passwd
 ```
+
+
+## curl 获取天气
+
+```bash
+$ curl http://wttr.in/~hangzhou
+```

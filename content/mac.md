@@ -35,3 +35,17 @@ default
 - https://github.com/Hammerspoon/hammerspoon/wiki/Sample-Configurations
 
 - https://github.com/jixiuf/dotfiles/blob/master/mac/hammerspoon/toggle_app.lua
+
+## vim
+
+mac 自带的 vim 与 brew 安装的 vim 有时候由于环境的问题，主要是 `$PATH`，我们以为是 brew 安装的 vim，实际上使用的却是系统自带的 vim。
+
+```bash
+# 这是 brew 安装的 vim
+/usr/local/bin/vim
+
+# 这是系统自带的 vim
+/usr/bin/vim
+```
+
+`echo $PATH` 看一下谁先被找到。
