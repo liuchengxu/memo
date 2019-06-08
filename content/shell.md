@@ -211,3 +211,41 @@ $ sudo passwd
 ```bash
 $ curl http://wttr.in/~hangzhou
 ```
+
+## 取日志的最后一列
+
+-F 后面跟分隔符
+
+```bash
+awk -F': ' '{print $NF}'
+```
+
+取最后一列并求和：
+
+```bash
+awk -F': ' '{print $NF}' | awk '{sum += $1};END {print sum}' 
+```
+
+```
+cat 98.log | grep -i 'issue.*wetez' | awk -F': ' '{print $NF}' | awk '{sum += $1};END {print sum}'
+```
+
+```
+cat 98.log | grep -i 'issue to account.*5DQQbeX7' | awk -F':' '{print $NF}' | awk '{sum += $1};END {print sum}'
+```
+
+```bash
+cat 98.log | grep -i 'issue to account.*5DQQbeX7' | awk -F': ' '{print $NF}' | awk '{sum += $1};END {print sum}'
+```
+
+
+## ls 对所有文件按大小排序
+
+```bash
+ls -Slh
+
+-S sort by file size, largest first
+-r reverse order while sorting
+-l use a long listing format
+-h --human-readable
+```
