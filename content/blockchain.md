@@ -125,3 +125,8 @@
 - https://zhuanlan.zhihu.com/p/38582224
 
 - https://github.com/xianfeng92/Love-Ethereum
+
+
+### DEX
+
+- [A Visual Way to Understand the Pros and Cons of a Decentralized Exchange](https://medium.com/@marcbegins/a-visual-way-to-understand-the-pros-and-cons-of-a-decentralized-exchange-5dd6a0a9fecf)

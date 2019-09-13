@@ -125,3 +125,5 @@ $ systemctl restart docker
 
 - https://www.itcodemonkey.com/article/3935.html
 
+
+https://askubuntu.com/questions/104899/make-apt-get-or-aptitude-run-with-y-but-not-prompt-for-replacement-of-configu
