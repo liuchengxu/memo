@@ -208,3 +208,8 @@ $ git checkout --theirs
 ```
 
 - https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/
+
+
+travis ci 部署 上传二进制
+
+- https://github.com/dandavison/delta/blob/master/src/bat/.travis.yml

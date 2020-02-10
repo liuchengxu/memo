@@ -223,7 +223,7 @@ awk -F': ' '{print $NF}'
 取最后一列并求和：
 
 ```bash
-awk -F': ' '{print $NF}' | awk '{sum += $1};END {print sum}' 
+awk -F': ' '{print $NF}' | awk '{sum += $1};END {print sum}'
 ```
 
 ```
@@ -249,3 +249,67 @@ ls -Slh
 -l use a long listing format
 -h --human-readable
 ```
+
+
+
+```
+sslocal -c conf.json
+```
+
+```
+git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+```
+
+neovim
+
+```bash
+git clone https://github.com/neovim/neovim
+
+make
+```
+
+ubuntu 18.04 vim
+
+```bash
+sudo apt install build-essential libncurses5-dev python-dev python3-dev \
+ruby-dev liblua5.2-dev lua5.2 libperl-dev libx11-dev libxt-dev \
+libxpm-dev libgnomeui-dev libgnome2-dev libgtk2.0-dev libatk1.0-dev \
+libbonoboui2-dev libcairo2-dev
+```
+
+```
+./configure \
+--with-features=huge \
+--enable-multibyte \
+--enable-rubyinterp=yes \
+--enable-pythoninterp=yes \
+--with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
+--enable-python3interp=yes \
+--with-python-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu \
+--enable-perlinterp=yes \
+--enable-luainterp=yes \
+--enable-gui=gtk3 \
+--enable-cscope \
+--prefix=/usr/local/
+
+
+sudo apt-get install libluajit-5.1-dev
+--with-luajit
+
+make && src/vim --version
+
+sudo make install
+```
+
+kitty only work with mono font.
+
+ubuntu 新硬盘 挂载
+http://linux.it.net.cn/m/view.php?aid=29121
+
+mount /dev/sdb /chainx
+
+如果不想挂载在 /chainx, 可以直接 mount 切换到另一个目录
+
+mount /dev/sdb /home/xlc/chainx
+
+uuid 不变，修改 /etc/fstab 里面的对应记录。

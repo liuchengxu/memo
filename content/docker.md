@@ -127,3 +127,5 @@ $ systemctl restart docker
 
 
 https://askubuntu.com/questions/104899/make-apt-get-or-aptitude-run-with-y-but-not-prompt-for-replacement-of-configu
+
+单机性能监控: https://github.com/netdata/netdata

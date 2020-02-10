@@ -130,3 +130,20 @@
 ### DEX
 
 - [A Visual Way to Understand the Pros and Cons of a Decentralized Exchange](https://medium.com/@marcbegins/a-visual-way-to-understand-the-pros-and-cons-of-a-decentralized-exchange-5dd6a0a9fecf)
+
+
+
+### 默克尔树
+
+Merkle tree 可以高效地识别数据有任何的更改。
+
+- https://media.consensys.net/ever-wonder-how-merkle-trees-work-c2f8b7100ed3
+- https://media.consensys.net/linking-the-chains-with-btc-relay-5ffd2c8248
+
+
+https://hackernoon.com/getting-deep-into-evm-how-ethereum-works-backstage-ac7efa1f0015
+
+
+### 零知识证明
+
+- 
