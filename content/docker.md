@@ -129,3 +129,16 @@ $ systemctl restart docker
 https://askubuntu.com/questions/104899/make-apt-get-or-aptitude-run-with-y-but-not-prompt-for-replacement-of-configu
 
 单机性能监控: https://github.com/netdata/netdata
+
+### docker 手动升级
+
+```bash
+$ docker run -it --name cargo-contract-builder chainxorg/contract-builder:v0.6.0 bash
+$ # Do the upgrade
+$ exit
+
+$ docker container ls -a
+
+$ docker commit -m "Update to v0.6.1" 8f446c21e6fb chainxorg/contract-builder:v0.6.1
+$ docker push chainxorg/contract-builder:v0.6.1
+```
