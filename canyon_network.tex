@@ -1,0 +1,236 @@
+\documentclass[]{article}
+
+\title{Canyon: Permanent Storage Layer for Limitless Scalability}
+\author{Liu-Cheng Xu}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[firstpage]{draftwatermark}
+\SetWatermarkLightness{0.4}
+\SetWatermarkFontSize{3cm}
+\SetWatermarkText{Incomplete Draft}
+
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage[linesnumbered,boxed,ruled,commentsnumbered]{algorithm2e}
+
+\usepackage{xcolor}
+
+% Use for advanced enum-list functionality
+\usepackage{enumitem}
+
+% Define question and answer environment
+\newenvironment{faq}{\begin{description}[style=nextline]}{\end{description}}
+
+\usepackage[a4paper,left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{algpseudocode}
+
+\usepackage{xeCJK}
+\setCJKmainfont{STKaiti}
+
+\setlength{\parskip}{0.6em}
+
+\usepackage{titlesec}
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+    TODO
+
+\end{abstract}
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+TODO
+
+\subsection{Organization}
+
+TODO
+
+\section{Related works}
+
+\subsection{Filecoin}
+
+TODO
+
+\subsection{Crust}
+
+TODO
+
+\subsection{Arweave}
+
+TODO
+
+\section{System design}
+
+\subsection{Consensus}
+
+\subsubsection{Proof of Access}
+
+\begin{flalign}
+ \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{finds hash first})
+\end{flalign}
+
+\begin{flalign}
+    \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{claims slot})
+\end{flalign}
+
+\IncMargin{1em}
+\begin{algorithm}
+
+    \SetAlgoNoLine
+    \SetKwInOut{Input}{\textbf{Input}}\SetKwInOut{Output}{\textbf{Output}}
+
+    \Input{
+        \\
+        The random seed $S$\;\\
+        The weave size $W$\;\\}
+    \Output{
+        \\
+        The proof of accesing the recall block $POA$\;\\}
+    \BlankLine
+
+    Initialize the number of repeats $x$ with 1\;
+    \BlankLine
+
+    \Repeat
+        {\text{The data of TX is available}}
+        {
+        Draw a random byte $B$ with $\Call{MultiHash}{S, x} \mod W$\;
+        Find the $TX$ in which the random byte $B$ is included\;
+        {$x \leftarrow x + 1$}\;
+    }
+
+    \BlankLine
+    $POA \leftarrow \Call{ConstructPOA}{TX}$\;
+    \Return $POA$\;
+    \caption{Generation of POA}
+\end{algorithm}
+\DecMargin{1em}
+
+$$
+\hat{x} = \frac{1}{N} {\sum_{i=1}^N x_i}
+$$
+
+$$
+R = \frac{1}{\hat{x}_{{N \to +\infty}}}
+$$
+
+\subsubsection{Proof of Stake}
+
+\subsubsubsection{Staking Rewards}
+
+\subsubsubsection{Stake}
+
+\subsection{Economy Model}
+
+\subsubsection{Perpetual Storage Cost}
+
+\begin{equation}\label{CPDS}
+	P_{GBH} = \frac{HDD_{price}}{HDD_{capacity} * HDD_{mtbf}}
+\end{equation}
+
+\begin{itemize}
+	\item $P_{GBH} =$
+	\item $HDD_{price}$
+	\item $HDD_{capacity}$
+	\item ${HDD_{mtbf}}$
+\end{itemize}
+
+\begin{equation}
+    P_{store} = \sum_{i = 0}^{\infty} (Data_{size} * P_{GBH}[i])
+\end{equation}
+
+\subsubsection{Transaction Fee}
+
+\begin{align}
+	TX_{permacost} &= TX_{data\_size} * Sum \\
+	TX_{bandwidthcost} &= TX_{data\_size} * C_{network\_per\_byte} \\
+	TX_{reward} &= TX_{permacost} * C_{fee} + TX_{bandwidthcost}	\\
+	TX_{total} &= TX_{permacost} + TX_{reward}
+\end{align}
+
+其中
+
+\begin{itemize}
+	\item $TX_{permacost}$
+	\item $TX_{data\_size}$
+	\item $TX_{bandwidthcost}$
+	\item $TX_{reward}$
+	\item ${TX_{total}}$
+\end{itemize}
+
+\subsubsection{Data Oblivion}
+
+TODO
+
+\subsubsection{Multi-currency Payment}
+
+TODO
+
+\subsection{Transaction Pool}
+
+TODO
+
+\section{Roadmap}
+
+TODO
+
+\section{Conclusion}
+
+\subsection{Future work}
+
+\begin{thebibliography}{99}
+\bibitem{ref1}Protocol Labs, Filecoin: A Decentralized Storage Network, \url{https://filecoin.io/filecoin.pdf}.
+\bibitem{ref2}\url{https://crust.network/}
+\bibitem{ref3}Sam Williams, Viktor Diordiiev, Lev Berman, India Raybould, Ivan Uemlianin. Arweave: A Protocol for Economically Sustainable Information Permanence.
+\bibitem{ref4} Gavid wood. Polkadot: Vision for A Heterogeneous Multi-chain Framework. \url{https://polkadot.network/PolkaDotPaper.pdf}
+\bibitem{ref5}\url{https://github.com/paritytech/substrate}
+\bibitem{ref6}Vitalik buterin. An Incomplete Guide to Rollups, \url{https://vitalik.ca/general/2021/01/05/rollup.html}
+\bibitem{ref7}A Storage-based Computation Paradigm Enabled by Arweave, \url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}
+\bibitem{ref8}\url{https://ever.finance/}
+\end{thebibliography}
+
+\appendix
+\section{Appendix}
+
+\end{document}
