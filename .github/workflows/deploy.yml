@@ -12,7 +12,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: canyon_network.tex
-          latexmk_use_xelatex: true
+          # latexmk_use_xelatex: true
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
