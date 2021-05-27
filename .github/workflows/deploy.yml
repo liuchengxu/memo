@@ -1,9 +1,9 @@
-name: Build LaTeX document
+name: Build
 
 on: [push, pull_request]
 
 jobs:
-  build_latex:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -11,12 +11,15 @@ jobs:
       - name: Compile
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: canyon_network.tex
+          root_file: |
+            canyon_network.tex
+            survey.tex
           latexmk_use_xelatex: true
       - name: Prepare public
         run: |
           mkdir public
           mv canyon_network.pdf public
+          mv survey.pdf public
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
