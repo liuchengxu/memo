@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Motivation}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Organization}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Related works}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Filecoin}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Crust}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Arweave}{2}{subsection.2.3}%
+\contentsline {section}{\numberline {3}System design}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Consensus}{2}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Proof of Access}{2}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Proof of Stake}{3}{subsubsection.3.1.2}%
+\contentsline {subsubsubsection}{\numberline {3.1.2.1}Staking Rewards}{3}{subsubsubsection.3.1.2.1}%
+\contentsline {subsubsubsection}{\numberline {3.1.2.2}Stake}{3}{subsubsubsection.3.1.2.2}%
+\contentsline {subsection}{\numberline {3.2}Economy Model}{3}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Perpetual Storage Cost}{3}{subsubsection.3.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2}Transaction Fee}{3}{subsubsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.3}Data Oblivion}{4}{subsubsection.3.2.3}%
+\contentsline {subsubsection}{\numberline {3.2.4}Multi-currency Payment}{4}{subsubsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.3}Transaction Pool}{4}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Roadmap}{4}{section.4}%
+\contentsline {section}{\numberline {5}Conclusion}{4}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Future work}{4}{subsection.5.1}%
+\contentsline {section}{\numberline {A}Appendix}{4}{appendix.A}%
