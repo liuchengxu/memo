@@ -13,9 +13,13 @@ jobs:
         with:
           root_file: canyon_network.tex
           latexmk_use_xelatex: true
+      - name: Prepare public
+        run: |
+          mkdir public
+          mv canyon_network.pdf public
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: .
+          FOLDER: public
