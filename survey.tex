@@ -83,19 +83,36 @@ TODO
 
 TODO
 
-\section{Related works}
+\section{Background}
 
 \subsection{Filecoin}
 
-TODO
+% In order to solve the problem of decentralized storage verification, Filecoin proposes a solution based on zero-knowledge proofs (ZKPs) to continuously verify the promised storage. The feature of this solution is that it uses pure mathematical methods so as to achieve high security consensus, but the verification process consumes too much computing power, making storage and application costs prohibitively expensive. This cost inefficiency precludes a significant number of existing small storage devices (such as home NAS servers) from participating in the decentralized storage networks. As a result, its storage distribution today remains centralized, which is unfavorable for the realization of peer-to-peer (P2P) decentralized network. With such a network topology, the cost of data transmission in the future will be just as difficult to reduce as centralized services’.
+
+% Furthermore, due to varying local laws and regulations, it is necessary that decentralized storage network nodes be able to apply local compliance restrictions to the content it stores. Existing storage projects have not paid enough attention to this important and inescapable reality, thereby inadvertently exposing miners to violation of local laws. Miners can unintentionally encounter legal troubles and financial losses.
+
+% Web3.0 applications need an infrastructure that not only has the ability to recognize variations in law, but that also provides a secure, highly available, lowcost, and easy-to-use decentralized data access service.
+
+
+% Filecoin ensures that miners keep a exact number of copies of users’ data by adopting a complex cryptographic technology based on zero-knowledge proofs. And the reliability of the data stored is achieved through the “challenge” scheme for proof-of-storage.
+
+% One of the greatest obstacles for being a Filecoin miner is the overdue reliance on high-performance hardware to create a zero-knowledge proof. To protect against various attacks, Filecoin requires miners to seal the files before applying the storage. Restricted by the algorithm, it takes several hours to seal a 32 GB file, resulting in a high cost of storage in practice. To maximize their mining revenue, miners have to store a large amount of meaningless data in the network as there are not that much real storage needs at present. Hence, how to ensure that only meaningful data is stored in the network is still a problem to be solved.
+
+Filecoin\cite{ref1} proposes a sophisticated cryptographic solution based on zero-knowledge proofs (ZKPs) to prevent the common attacks on the decentralized storage verification, which uses pure mathematical methods and is able to achieve high security guarantees. The whole mining process consumes too much computing power, making the actual storage cost prohibitively expensive. Furthermore, the extreme high hardware requirements eliminate a lot of small miners with common commodity hardwares from joining the network, the storage distribution today becomes centralized.
+
+Due to the lack of authentic storage needs and system design of Filecoin, the miners themselves have to store tons of garbage data in the network, increasing the storage power and earning more mining rewards. Despite the off-chain governance approach like Filecoin Plus\footnote{\url{https://docs.filecoin.io/store/filecoin-plus}} being put up, it literally does not help a lot. How to promote the useful storage is still an unresolved huge challenge in Filecoin network.
 
 \subsection{Crust}
 
-TODO
+To solve the problem of decentralized storage verification, Crust\cite{ref2} adopts a hardware-based solution Trusted Environment Execution (TEE) to assure the client that the miners store a specific number of data copies as promised. Each of the storage nodes is required to enroll on Crust chain through TEE before it's allowed to deal with the storage orders from client. The TEE module of the nodes will periodly check and report whether the files are properly stored in the local storage space in a trusted way.
+
+Despite Crust has a relatively low hardware demand for the mining compared with Filecoin, the miners are heavily dependent on the limited kinds of hardware that supports TEE, thus being greatly affected by the hardware manufacturers\footnote{The three major CPU platform have different implementations: Software Guard Extensions(SGX) on the Intel platform, Secure Encrypted Virtualization (SEV) on the AMD platform, and TrustZone on the ARM platform. The SGX of Intel is the mostly widely used TEE platform.}.
 
 \subsection{Arweave}
 
-TODO
+
+
+Canyon is profoundly inspired by Arweave.
 
 \section{System design}
 
