@@ -31,6 +31,18 @@
 \usepackage{titlesec}
 \titleclass{\subsubsubsection}{straight}[\subsection]
 
+\usepackage{xcolor}
+\usepackage{soul}
+
+\definecolor{inlineBG}{HTML}{F1F1F1}
+\definecolor{inlineFG}{HTML}{FF0000}
+\newcommand{\code}[1]{{%
+  \sethlcolor{inlineBG}%
+  \color{inlineFG}%
+  \ttfamily
+  \hl{#1}%
+}}
+
 \newcounter{subsubsubsection}[subsubsection]
 \renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
 \renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}}
@@ -103,15 +115,17 @@ Unlike the ephemeral storage services such as Filecoin, Crust, Arweave\cite{ref3
 
 Without the periodical audit of the data replications, Arweave is much effortless than the other solutions in terms of the constraint and cost of storage consensus. Nevertheless, the deficiency of this scheme is the potential risk of data centralization that ultimately there possibly will be a single storage provider serves the whole data. The Arweave team has introduced and delopyed an improved version of consensus Succinct Proofs of Random Access, attempting to disincentivize miners from retrieving data on demand from the network.
 
-Canyon network is profoundly inspired by Arweave, aiming to be a permenant decentrialized storage network using Substrate framework. The key contribution of Canyon is that it adapts PoS into the storage consensus of Arweave, whereas Arweave uses PoW, making Canyon network more scalable and environment-friendly.
+\section{Design purposes}
 
-\subsection{Design purposes}
-
-\subsubsection{Security and privacy}
+\subsection{Security and privacy}
 
 \section{System design}
 
 \subsection{Consensus}
+
+Canyon network is profoundly inspired by Arweave, especially the storage consensus, aiming to be a permenant decentrialized storage network using Substrate framework. The key contribution of Canyon is that it adapts PoS into the storage consensus of Arweave, whereas Arweave uses PoW, making Canyon a more scalable and environment-friendly network.
+
+In order to mine a block, a legitimate POA, which proves the block author has the access to the data of a random historical block, is required to be included in the block header. According to the computed result of POA, we can estimate the proportion of data stored locally by a node in the network-wide data. Based on this, we link the PoS rewards to the estimated storage capacity of a node. The more data a node stores, the more rewards it can receive. Besides, as the blocks mined by the node increase, the estimation is getting closer to the actual value.
 
 \subsubsection{Proof of Access}
 
@@ -156,13 +170,33 @@ Canyon network is profoundly inspired by Arweave, aiming to be a permenant decen
 \end{algorithm}
 \DecMargin{1em}
 
+The steps are as follows:
+
+\begin{enumerate}
+  \item Input the value of \code{parent\_hash} and \code{weave\_size} respectively. And depth is initialized to 1.
+  \item Compute \code{recall\_byte}, i.e. a random byte in the network-wide data history that ranges from 0 to \code{weave\_size}, excluding \code{weave\_size}. For the RecallByte formula, please see AR source code.
+  \item Find out the random byte belongs to which \code{recall\_tx} included in which block given \code{recall\_byte}.
+  \item If you have stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a Chunk (256KB) list, then create a \code{poa \{ data\_root, tx\_path, data\_path, Chunk \} }.
+  \item If the node does not have the data of \code{recall\_tx} locally, increase the value of \code{depth} by 1 and repeat the step 2 to 4.
+  \item Return poa.
+\end{enumerate}
+
+As you can see, if a node stores 100\% of data, the value of `depth` always remains 1. The node only needs to go through the above steps once every time when it attempts to generate a `poa` proof. If the node stores 50\% of data, the value of `depth` is expected to approach 2 as it produces enough blocks. If the node stores 10\% of data, the value of \code{depth} approaches 10.
+
+If a node produces a total of $N$ blocks, and the poa.depth of each block is $depth_{i\in 1,2,...,N}$, the average `depth` value of the $N$ blocks $\hat{x}$ is:
+
 $$
 \hat{x} = \frac{1}{N} {\sum_{i=1}^N x_i}
 $$
 
+
+If the node produces enough blocks (i.e. $N \to \infty$) , we can calculate what proportion of data stored locally by the node in the network-wide data more precisely with the value of $\hat{x}_{N \to \infty}$. The formula is as follows:
+
 $$
-R = \frac{1}{\hat{x}_{{N \to +\infty}}}
+R = \frac{1}{\hat{x}_{{N \to \infty}}}
 $$
+
+With the knowledge of the storage capacity of nodes $R$, we can incentivize miners to store more users' data by allocating PoS rewards to them accordingly.
 
 \subsubsection{Proof of Stake}
 
