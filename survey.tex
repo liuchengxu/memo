@@ -65,7 +65,7 @@
 
 \begin{abstract}
 
-    TODO
+Canyon is a permanent storage network built on Substrate, which records the hashes of files on chain and stores the files off-chain. By blending PoS and a probabilistic proof-of-storage scheme inspired by Arweave, Canyon greatly reduces the barriers to entry for miners, incentivizing them to store as much data as possible for the block rewards.
 
 \end{abstract}
 
@@ -79,40 +79,35 @@
 
 TODO
 
-\subsection{Organization}
+% \subsection{Organization}
 
-TODO
+% TODO
 
 \section{Background}
 
 \subsection{Filecoin}
 
-% In order to solve the problem of decentralized storage verification, Filecoin proposes a solution based on zero-knowledge proofs (ZKPs) to continuously verify the promised storage. The feature of this solution is that it uses pure mathematical methods so as to achieve high security consensus, but the verification process consumes too much computing power, making storage and application costs prohibitively expensive. This cost inefficiency precludes a significant number of existing small storage devices (such as home NAS servers) from participating in the decentralized storage networks. As a result, its storage distribution today remains centralized, which is unfavorable for the realization of peer-to-peer (P2P) decentralized network. With such a network topology, the cost of data transmission in the future will be just as difficult to reduce as centralized services’.
+Filecoin\cite{ref1} proposes a sophisticated cryptographic solution based on zero-knowledge proofs (ZKPs) to prevent the common attacks on the decentralized storage verification, which uses pure mathematical methods and is able to achieve high security guarantees. The whole mining process consumes too much computing power, making the actual storage cost prohibitively expensive. Furthermore, the high hardware requirements largely raise the threshold for small miners, preventing these with pure common commodity hardwares from joining the network, the storage distribution today becomes centralized.
 
-% Furthermore, due to varying local laws and regulations, it is necessary that decentralized storage network nodes be able to apply local compliance restrictions to the content it stores. Existing storage projects have not paid enough attention to this important and inescapable reality, thereby inadvertently exposing miners to violation of local laws. Miners can unintentionally encounter legal troubles and financial losses.
-
-% Web3.0 applications need an infrastructure that not only has the ability to recognize variations in law, but that also provides a secure, highly available, lowcost, and easy-to-use decentralized data access service.
-
-
-% Filecoin ensures that miners keep a exact number of copies of users’ data by adopting a complex cryptographic technology based on zero-knowledge proofs. And the reliability of the data stored is achieved through the “challenge” scheme for proof-of-storage.
-
-% One of the greatest obstacles for being a Filecoin miner is the overdue reliance on high-performance hardware to create a zero-knowledge proof. To protect against various attacks, Filecoin requires miners to seal the files before applying the storage. Restricted by the algorithm, it takes several hours to seal a 32 GB file, resulting in a high cost of storage in practice. To maximize their mining revenue, miners have to store a large amount of meaningless data in the network as there are not that much real storage needs at present. Hence, how to ensure that only meaningful data is stored in the network is still a problem to be solved.
-
-Filecoin\cite{ref1} proposes a sophisticated cryptographic solution based on zero-knowledge proofs (ZKPs) to prevent the common attacks on the decentralized storage verification, which uses pure mathematical methods and is able to achieve high security guarantees. The whole mining process consumes too much computing power, making the actual storage cost prohibitively expensive. Furthermore, the extreme high hardware requirements eliminate a lot of small miners with common commodity hardwares from joining the network, the storage distribution today becomes centralized.
-
-Due to the lack of authentic storage needs and system design of Filecoin, the miners themselves have to store tons of garbage data in the network, increasing the storage power and earning more mining rewards. Despite the off-chain governance approach like Filecoin Plus\footnote{\url{https://docs.filecoin.io/store/filecoin-plus}} being put up, it literally does not help a lot. How to promote the useful storage is still an unresolved huge challenge in Filecoin network.
+Due to the lack of authentic storage needs and system design of Filecoin, the miners themselves are economically impelled to store tons of garbage data in the network, increasing the storage power and earning more mining rewards. Despite the Filecoin team has proposed the off-chain governance approach like Filecoin Plus\footnote{\url{https://docs.filecoin.io/store/filecoin-plus}}, it does not mitigate this problem substantially, leaving the promotion of the useful storage still a huge unresolved challenge in the Filecoin network.
 
 \subsection{Crust}
 
-To solve the problem of decentralized storage verification, Crust\cite{ref2} adopts a hardware-based solution Trusted Environment Execution (TEE) to assure the client that the miners store a specific number of data copies as promised. Each of the storage nodes is required to enroll on Crust chain through TEE before it's allowed to deal with the storage orders from client. The TEE module of the nodes will periodly check and report whether the files are properly stored in the local storage space in a trusted way.
+To solve the problem of decentralized storage verification, Crust\cite{ref2} adopts a hardware-based solution Trusted Environment Execution (TEE) to make sure the miners store a specific number of data copies as promised. Each of the storage nodes is required to enroll on Crust chain through TEE before it's allowed to deal with the storage orders from client. The TEE module of the nodes will periodly check and report whether the files are properly stored in the local storage space in a trusted way.
 
-Despite Crust has a relatively low hardware demand for the mining compared with Filecoin, the miners are heavily dependent on the limited kinds of hardware that supports TEE, thus being greatly affected by the hardware manufacturers\footnote{The three major CPU platform have different implementations: Software Guard Extensions(SGX) on the Intel platform, Secure Encrypted Virtualization (SEV) on the AMD platform, and TrustZone on the ARM platform. The SGX of Intel is the mostly widely used TEE platform.}.
+There are three major TEE providers with different implementations: Software Guard Extensions(SGX) on the Intel platform, Secure Encrypted Virtualization (SEV) on the AMD platform, and TrustZone on the ARM platform. The SGX of Intel is the mostly widely used TEE platform. Although Crust has a relatively low hardware demand for the mining compared with Filecoin, the miners are heavily dependent on a fairly narrow range of of hardwares that support TEE, thus being greatly affected by the hardware manufacturers.
 
 \subsection{Arweave}
 
+Unlike the ephemeral storage services such as Filecoin, Crust, Arweave\cite{ref3} serves as a permanent storage layer using a probabilistic and incentive-driven approach to maximize the number of redundant copies of any individual piece of data in the network, which fills in a crucial aspect of decentralized storage need in Web 3.0. The natual feature of perpetual storage is perfectly suitable for the NFTs, and is the cornerstone of new storage-based computation paradigm like everFinance \footnote{\url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}}.
 
+Without the periodical audit of the data replications, Arweave is much effortless than the other solutions in terms of the constraint and cost of storage consensus. Nevertheless, the deficiency of this scheme is the potential risk of data centralization that ultimately there possibly will be a single storage provider serves the whole data. The Arweave team has introduced and delopyed an improved version of consensus Succinct Proofs of Random Access, attempting to disincentivize miners from retrieving data on demand from the network.
 
-Canyon is profoundly inspired by Arweave.
+Canyon network is profoundly inspired by Arweave, aiming to be a permenant decentrialized storage network using Substrate framework. The key contribution of Canyon is that it adapts PoS into the storage consensus of Arweave, whereas Arweave uses PoW, making Canyon network more scalable and environment-friendly.
+
+\subsection{Design purposes}
+
+\subsubsection{Security and privacy}
 
 \section{System design}
 
@@ -177,53 +172,21 @@ $$
 
 \subsection{Economy Model}
 
-\subsubsection{Perpetual Storage Cost}
-
-\begin{equation}\label{CPDS}
-	P_{GBH} = \frac{HDD_{price}}{HDD_{capacity} * HDD_{mtbf}}
-\end{equation}
-
-\begin{itemize}
-	\item $P_{GBH} =$
-	\item $HDD_{price}$
-	\item $HDD_{capacity}$
-	\item ${HDD_{mtbf}}$
-\end{itemize}
-
-\begin{equation}
-    P_{store} = \sum_{i = 0}^{\infty} (Data_{size} * P_{GBH}[i])
-\end{equation}
-
 \subsubsection{Transaction Fee}
 
-\begin{align}
-	TX_{permacost} &= TX_{data\_size} * Sum \\
-	TX_{bandwidthcost} &= TX_{data\_size} * C_{network\_per\_byte} \\
-	TX_{reward} &= TX_{permacost} * C_{fee} + TX_{bandwidthcost}	\\
-	TX_{total} &= TX_{permacost} + TX_{reward}
-\end{align}
-
-其中
-
-\begin{itemize}
-	\item $TX_{permacost}$
-	\item $TX_{data\_size}$
-	\item $TX_{bandwidthcost}$
-	\item $TX_{reward}$
-	\item ${TX_{total}}$
-\end{itemize}
+The fee of data storage transaction is composed of the perpetual storage cost and one-shot bandwidth cost. The perpetual storage cost is basically modeled after Arweave.
 
 \subsubsection{Data Oblivion}
 
 TODO
 
-\subsubsection{Multi-currency Payment}
+\subsubsection{Payments}
 
-TODO
+Canyon has an inherent advantage of easier interoperablity with the Polkadot ecosystem by using Substrate, which is the same framework Polkadot is built on. Canyon will support the users pay the storage fee using the stable coins like USDT.
 
-\subsection{Transaction Pool}
+% \subsection{Transaction Pool}
 
-TODO
+% TODO
 
 \section{Roadmap}
 
