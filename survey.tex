@@ -1,15 +1,18 @@
 \documentclass[]{article}
 
 \title{Canyon: Permanent Storage Layer for Limitless Scalability}
-\author{Liu-Cheng Xu}
+\author{
+    Liu-Cheng Xu\\
+    \textit{Canyon Labs}
+}
 \date{}
 
 \usepackage{amsmath}
 \usepackage{hyperref}
 \usepackage[firstpage]{draftwatermark}
 \SetWatermarkLightness{0.4}
-\SetWatermarkFontSize{3cm}
-\SetWatermarkText{Incomplete Draft}
+\SetWatermarkFontSize{6cm}
+\SetWatermarkText{Draft}
 
 %\usepackage{algorithm}
 %\usepackage{algorithmic}
@@ -40,7 +43,7 @@
   \sethlcolor{inlineBG}%
   \color{inlineFG}%
   \ttfamily
-  \hl{#1}%
+  \hl{ #1 }%
 }}
 
 \newcounter{subsubsubsection}[subsubsection]
@@ -77,7 +80,7 @@
 
 \begin{abstract}
 
-Canyon is a permanent storage network built on Substrate, which records the hashes of files on chain and stores the files off-chain. By blending PoS and a probabilistic proof-of-storage scheme inspired by Arweave, Canyon greatly reduces the barriers to entry for miners, incentivizing them to store as much data as possible for the block rewards.
+Canyon is a permanent storage network built on Substrate, which records the hashes of files on chain and stores the files off-chain. By blending PoS and a probabilistic proof-of-storage scheme inspired by Arweave, Canyon greatly reduces the barriers to entry for miners, who are incentived to store as much data as possible for the rewards.
 
 \end{abstract}
 
@@ -113,13 +116,13 @@ There are three major TEE providers with different implementations: Software Gua
 
 Unlike the ephemeral storage services such as Filecoin, Crust, Arweave\cite{ref3} serves as a permanent storage layer using a probabilistic and incentive-driven approach to maximize the number of redundant copies of any individual piece of data in the network, which fills in a crucial aspect of decentralized storage need in Web 3.0. The natual feature of perpetual storage is perfectly suitable for the NFTs, and is the cornerstone of new storage-based computation paradigm like everFinance \footnote{\url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}}.
 
-Without the periodical audit of the data replications, Arweave is much effortless than the other solutions in terms of the constraint and cost of storage consensus. Nevertheless, the deficiency of this scheme is the potential risk of data centralization that ultimately there possibly will be a single storage provider serves the whole data. The Arweave team has introduced and delopyed an improved version of consensus Succinct Proofs of Random Access, attempting to disincentivize miners from retrieving data on demand from the network.
+Without the periodical audit of the data replicas, Arweave is much effortless than the other solutions in terms of the constraint and cost of storage consensus. Nevertheless, the deficiency of this scheme is the potential risk of data centralization that ultimately there possibly will be a single storage provider serves the whole data. The Arweave team has introduced and delopyed an improved version of consensus Succinct Proofs of Random Access, attempting to disincentivize miners from retrieving data on demand from the network.
 
-\section{Design purposes}
+\section{Design Purposes}
 
-\subsection{Security and privacy}
+\subsection{Security and Privacy}
 
-\section{System design}
+\section{System Design}
 
 \subsection{Consensus}
 
@@ -129,9 +132,13 @@ In order to mine a block, a legitimate POA, which proves the block author has th
 
 \subsubsection{Proof of Access}
 
+In Arweave, the probability that a node can mine a block first is a function of the node’s hashing power relative to the average hashing power of all of the nodes in the network that also possess the recall block.
+
 \begin{flalign}
- \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{finds hash first})
+  \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{finds hash first})
 \end{flalign}
+
+In Canyon, the probability that a node can mine a block is:
 
 \begin{flalign}
     \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{claims slot})
@@ -174,37 +181,44 @@ The steps are as follows:
 
 \begin{enumerate}
   \item Input the value of \code{parent\_hash} and \code{weave\_size} respectively. And depth is initialized to 1.
-  \item Compute \code{recall\_byte}, i.e. a random byte in the network-wide data history that ranges from 0 to \code{weave\_size}, excluding \code{weave\_size}. For the RecallByte formula, please see AR source code.
-  \item Find out the random byte belongs to which \code{recall\_tx} included in which block given \code{recall\_byte}.
-  \item If you have stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a Chunk (256KB) list, then create a \code{poa \{ data\_root, tx\_path, data\_path, Chunk \} }.
-  \item If the node does not have the data of \code{recall\_tx} locally, increase the value of \code{depth} by 1 and repeat the step 2 to 4.
+  \item Compute \code{recall\_byte}, i.e. a random byte in the network-wide data history ranging from 0 to \code{weave\_size}, excluding \code{weave\_size}.
+  \item Find out the \code{recall\_tx} the contains the \code{recall\_byte} computed from the previous step.
+  \item If the miner has stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a Chunk (256KB) list, then create a \code{poa \{ data\_root, tx\_path, data\_path, Chunk \} }.
+  \item If the miner does not have the data of \code{recall\_tx} locally, increase the value of \code{depth} by 1 and repeat the step 2 to 4.
   \item Return poa.
 \end{enumerate}
 
-As you can see, if a node stores 100\% of data, the value of `depth` always remains 1. The node only needs to go through the above steps once every time when it attempts to generate a `poa` proof. If the node stores 50\% of data, the value of `depth` is expected to approach 2 as it produces enough blocks. If the node stores 10\% of data, the value of \code{depth} approaches 10.
+As you can see, if a node stores 100\% of data, the value of \code{depth} always remains 1. The node only needs to go through the above steps once every time when it attempts to generate a \code{poa} proof. If the node stores 50\% of data, the value of \code{depth} is expected to approach 2 as it produces enough blocks. If the node stores 10\% of data, the value of \code{depth} approaches 10.
 
-If a node produces a total of $N$ blocks, and the poa.depth of each block is $depth_{i\in 1,2,...,N}$, the average `depth` value of the $N$ blocks $\hat{x}$ is:
+If a node produces a total of $N$ blocks, and the poa.depth of each block is $depth_{i\in 1,2,...,N}$, the average \code{depth} value of the $N$ blocks $\hat{x}$ is:
 
 $$
 \hat{x} = \frac{1}{N} {\sum_{i=1}^N x_i}
 $$
 
-
-If the node produces enough blocks (i.e. $N \to \infty$) , we can calculate what proportion of data stored locally by the node in the network-wide data more precisely with the value of $\hat{x}_{N \to \infty}$. The formula is as follows:
+With time, the node produces enough blocks (i.e. $N \to \infty$), we can calculate the proportion of data stored locally by the node relative to the network-wide data more precisely with the value of $\hat{x}_{N \to \infty}$. The formula is as follows:
 
 $$
 R = \frac{1}{\hat{x}_{{N \to \infty}}}
 $$
 
-With the knowledge of the storage capacity of nodes $R$, we can incentivize miners to store more users' data by allocating PoS rewards to them accordingly.
+With the knowledge of the storage capacity of nodes $R$, we can incentivize the miners to store more users' data by allocating the rewards accordingly.
 
 \subsubsection{Proof of Stake}
 
+\subsubsubsection{Validator Election}
+
+The validators on Canyon network have two duties: author blocks as a virtual miner and provide the unstoppable storage services. The security of a PoS system is rooted in the number of token in staking.
+
+WIP
+
 \subsubsubsection{Staking Rewards}
 
-\subsubsubsection{Stake}
-
 \subsection{Economy Model}
+
+\subsubsection{Bandwidth}
+
+For any storage platform to be valuable, it must be careful not to lose the data it was given, even in the presence of a variety of possible failures within the system. What's more, a storage platform is of no use unless it also functions as a retrieval platform. Only when the data can be retrieved without any pains whenever the client wants to can we hope a fully functional storage service.
 
 \subsubsection{Transaction Fee}
 
@@ -212,23 +226,21 @@ The fee of data storage transaction is composed of the perpetual storage cost an
 
 \subsubsection{Data Oblivion}
 
-TODO
+Specifically, the perpetual storage needs can be classified into two kinds: immortal and indefinite storage. The immortal storage means the file that is doomed to be preserved from the creation, such as the metadata of NFTs. The indefinite storage is such a kind of data that has an uncertainty of ending time, but can be deleted once it's used or the client simply does not wish the contract to be continued for any reason.
+
+For these cases, Canyon supports the origin uploader choose to stop the contract and partially refund the charged perpetual storage fee. The files that have been refunded will be disqualified to be selected for the future storage consensus processure, thus the miners that keeps storing them will not be rewarded. For the sake of scarce storage resources, consequently the miners are expected to purge these data from the local storage, eventually they will be deleted from the network.
 
 \subsubsection{Payments}
 
-Canyon has an inherent advantage of easier interoperablity with the Polkadot ecosystem by using Substrate, which is the same framework Polkadot is built on. Canyon will support the users pay the storage fee using the stable coins like USDT.
+Canyon has an inherent advantage of easier interoperablity with the Polkadot\cite{ref4} ecosystem by using Substrate\cite{ref5}, which is the same framework Polkadot is built on. Canyon will support the users pay the storage fee by the stable coins like USDT, reducing the impact of the churn of token price on providing a stable storage service.
 
 % \subsection{Transaction Pool}
 
 % TODO
 
-\section{Roadmap}
-
-TODO
-
 \section{Conclusion}
 
-\subsection{Future work}
+Canyon network is designed to be a permanent decentralized storage network, putting the emphsis on both lighter storage consensus and data retrieval. Being a permanent storage layer, Canyon is better suited for the storage-based computation paradigm.
 
 \begin{thebibliography}{99}
 \bibitem{ref1}Protocol Labs, Filecoin: A Decentralized Storage Network, \url{https://filecoin.io/filecoin.pdf}.
@@ -236,9 +248,9 @@ TODO
 \bibitem{ref3}Sam Williams, Viktor Diordiiev, Lev Berman, India Raybould, Ivan Uemlianin. Arweave: A Protocol for Economically Sustainable Information Permanence.
 \bibitem{ref4} Gavid wood. Polkadot: Vision for A Heterogeneous Multi-chain Framework. \url{https://polkadot.network/PolkaDotPaper.pdf}
 \bibitem{ref5}\url{https://github.com/paritytech/substrate}
-\bibitem{ref6}Vitalik buterin. An Incomplete Guide to Rollups, \url{https://vitalik.ca/general/2021/01/05/rollup.html}
-\bibitem{ref7}A Storage-based Computation Paradigm Enabled by Arweave, \url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}
-\bibitem{ref8}\url{https://ever.finance/}
+% \bibitem{ref6}Vitalik buterin. An Incomplete Guide to Rollups, \url{https://vitalik.ca/general/2021/01/05/rollup.html}
+% \bibitem{ref7}A Storage-based Computation Paradigm Enabled by Arweave, \url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}
+% \bibitem{ref8}\url{https://ever.finance/}
 \end{thebibliography}
 
 \appendix
