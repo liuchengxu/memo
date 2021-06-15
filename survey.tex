@@ -3,6 +3,7 @@
 \title{Canyon: Permanent Storage Layer for Limitless Scalability}
 \author{
     Liu-Cheng Xu\\
+    \\
     \textit{Canyon Labs}
 }
 \date{}
@@ -80,7 +81,7 @@
 
 \begin{abstract}
 
-Canyon is a permanent storage network built on Substrate, which records the hashes of files on chain and stores the files off-chain. By blending PoS and a probabilistic proof-of-storage scheme inspired by Arweave, Canyon greatly reduces the barriers to entry for miners, who are incentived to store as much data as possible for the rewards.
+Canyon is a permanent storage network built on Substrate, which records the hashes of files on-chain and stores the files off-chain. By blending PoS and a probabilistic proof-of-storage scheme inspired by Arweave, Canyon greatly reduces the barriers to entry for miners, who are incentivized to store as much data as possible for the rewards.
 
 \end{abstract}
 
@@ -92,7 +93,7 @@ Canyon is a permanent storage network built on Substrate, which records the hash
 
 \subsection{Motivation}
 
-TODO
+It can't be denied that the storage infrastrusture is an essential part of Web 3.0 in the future.
 
 % \subsection{Organization}
 
@@ -102,23 +103,24 @@ TODO
 
 \subsection{Filecoin}
 
-Filecoin\cite{ref1} proposes a sophisticated cryptographic solution based on zero-knowledge proofs (ZKPs) to prevent the common attacks on the decentralized storage verification, which uses pure mathematical methods and is able to achieve high security guarantees. The whole mining process consumes too much computing power, making the actual storage cost prohibitively expensive. Furthermore, the high hardware requirements largely raise the threshold for small miners, preventing these with pure common commodity hardwares from joining the network, the storage distribution today becomes centralized.
+Filecoin\cite{ref1} proposes a sophisticated cryptographic solution based on zero-knowledge proofs (ZKPs) to prevent the common attacks on the decentralized storage verification, which uses pure mathematical methods and is able to achieve high-security guarantees. The whole mining process consumes too much computing power, rendering the actual storage cost prohibitively expensive. Furthermore, the high hardware requirements largely raise the threshold for small miners, preventing those with pure common commodity hardware from joining the network, the storage distribution today becomes centralized.
 
-Due to the lack of authentic storage needs and system design of Filecoin, the miners themselves are economically impelled to store tons of garbage data in the network, increasing the storage power and earning more mining rewards. Despite the Filecoin team has proposed the off-chain governance approach like Filecoin Plus\footnote{\url{https://docs.filecoin.io/store/filecoin-plus}}, it does not mitigate this problem substantially, leaving the promotion of the useful storage still a huge unresolved challenge in the Filecoin network.
+Due to the lack of authentic storage needs and system design of Filecoin, the miners themselves are economically impelled to store tons of garbage data in the network, increasing the storage power and maximizing their mining profit. Despite the Filecoin team has proposed the off-chain governance approach like Filecoin Plus\footnote{\url{https://docs.filecoin.io/store/filecoin-plus}}, it does not mitigate this problem substantially, leaving the promotion of the useful storage still a huge unresolved challenge in the Filecoin network.
 
 \subsection{Crust}
 
-To solve the problem of decentralized storage verification, Crust\cite{ref2} adopts a hardware-based solution Trusted Environment Execution (TEE) to make sure the miners store a specific number of data copies as promised. Each of the storage nodes is required to enroll on Crust chain through TEE before it's allowed to deal with the storage orders from client. The TEE module of the nodes will periodly check and report whether the files are properly stored in the local storage space in a trusted way.
+To solve the problem of decentralized storage verification, Crust\cite{ref2} adopts a hardware-based solution Trusted Environment Execution (TEE) to make sure the miners store a specific number of data copies as promised. Each of the storage nodes is required to enroll on Crust chain through TEE before it's allowed to deal with the storage orders from client. The TEE module of the nodes will periodically check and report whether the files are properly stored in the local storage space in a trusted way.
 
-There are three major TEE providers with different implementations: Software Guard Extensions(SGX) on the Intel platform, Secure Encrypted Virtualization (SEV) on the AMD platform, and TrustZone on the ARM platform. The SGX of Intel is the mostly widely used TEE platform. Although Crust has a relatively low hardware demand for the mining compared with Filecoin, the miners are heavily dependent on a fairly narrow range of of hardwares that support TEE, thus being greatly affected by the hardware manufacturers.
+There are three major TEE providers with different implementations: Software Guard Extensions (SGX) on the Intel platform, Secure Encrypted Virtualization (SEV) on the AMD platform, and TrustZone on the ARM platform. The SGX of Intel is the most widely used TEE platform. Although Crust has a relatively low hardware demand for mining compared with Filecoin, the miners are heavily dependent on a fairly narrow range of hardware that supports TEE, thus being greatly affected by the hardware manufacturers.
 
 \subsection{Arweave}
 
-Unlike the ephemeral storage services such as Filecoin, Crust, Arweave\cite{ref3} serves as a permanent storage layer using a probabilistic and incentive-driven approach to maximize the number of redundant copies of any individual piece of data in the network, which fills in a crucial aspect of decentralized storage need in Web 3.0. The natual feature of perpetual storage is perfectly suitable for the NFTs, and is the cornerstone of new storage-based computation paradigm like everFinance \footnote{\url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}}.
+Unlike the ephemeral storage services such as Filecoin, Crust, Arweave\cite{ref3} serves as a permanent storage layer using a probabilistic and incentive-driven approach to maximize the number of redundant copies of any individual piece of data in the network, which fills in a crucial aspect of decentralized storage need in Web 3.0. The natural feature of perpetual storage is perfectly suitable for the NFTs, and is the cornerstone of new storage-based computation paradigm like everFinance \footnote{\url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}}.
 
-Without the periodical audit of the data replicas, Arweave is much effortless than the other solutions in terms of the constraint and cost of storage consensus. Nevertheless, the deficiency of this scheme is the potential risk of data centralization that ultimately there possibly will be a single storage provider serves the whole data. The Arweave team has introduced and delopyed an improved version of consensus Succinct Proofs of Random Access, attempting to disincentivize miners from retrieving data on demand from the network.
+Without the periodical audit of the data replicas, Arweave is much effortless than the other solutions in terms of the constraint and cost of storage consensus. Nevertheless, the deficiency of this scheme is the potential risk of data centralization that ultimately there possibly will be a single storage provider serves the whole data. The Arweave team has introduced and deplopyed an improved version of consensus Succinct Proofs of Random Access, attempting to disincentivize miners from retrieving data on demand from the network.
 
-\section{Design Purposes}
+\section{Design Principles\\
+}
 
 \subsection{Security and Privacy}
 
@@ -126,9 +128,9 @@ Without the periodical audit of the data replicas, Arweave is much effortless th
 
 \subsection{Consensus}
 
-Canyon network is profoundly inspired by Arweave, especially the storage consensus, aiming to be a permenant decentrialized storage network using Substrate framework. The key contribution of Canyon is that it adapts PoS into the storage consensus of Arweave, whereas Arweave uses PoW, making Canyon a more scalable and environment-friendly network.
+Canyon network is profoundly inspired by Arweave, especially the storage consensus, aiming to be a permanant decentralized storage network using the Substrate framework. The key contribution of Canyon is that it adapts PoS into the storage consensus of Arweave, whereas Arweave uses PoW, making Canyon a more scalable and environment-friendly network.
 
-In order to mine a block, a legitimate POA, which proves the block author has the access to the data of a random historical block, is required to be included in the block header. According to the computed result of POA, we can estimate the proportion of data stored locally by a node in the network-wide data. Based on this, we link the PoS rewards to the estimated storage capacity of a node. The more data a node stores, the more rewards it can receive. Besides, as the blocks mined by the node increase, the estimation is getting closer to the actual value.
+In order to mine a block, a legitimate POA, which proves the block author has the access to the data of a random historical block, is required to be included in the block header. According to the computed result of POA, we can estimate the proportion of data stored locally by a node in the network-wide data. Based on this, we link the PoS rewards to the estimated storage capacity of a node. The more data a node stores, the more rewards it can receive. Besides, as the number of blocks mined by the node continues to grow, the estimation of the node's storage capacity will be getting closer to the actual value.
 
 \subsubsection{Proof of Access}
 
@@ -156,7 +158,7 @@ In Canyon, the probability that a node can mine a block is:
         The weave size $W$\;\\}
     \Output{
         \\
-        The proof of accesing the recall block $POA$\;\\}
+        The proof of accessing the recall block $POA$\;\\}
     \BlankLine
 
     Initialize the number of repeats $x$ with 1\;
@@ -177,7 +179,7 @@ In Canyon, the probability that a node can mine a block is:
 \end{algorithm}
 \DecMargin{1em}
 
-The steps are as follows:
+The steps for generating the storage proof are as follows:
 
 \begin{enumerate}
   \item Input the value of \code{parent\_hash} and \code{weave\_size} respectively. And depth is initialized to 1.
@@ -208,11 +210,17 @@ With the knowledge of the storage capacity of nodes $R$, we can incentivize the 
 
 \subsubsubsection{Validator Election}
 
-The validators on Canyon network have two duties: author blocks as a virtual miner and provide the unstoppable storage services. The security of a PoS system is rooted in the number of token in staking.
+The validators on Canyon network have two duties: author blocks as a virtual miner and provide unstoppable storage services. The security of a PoS system is rooted in the number of tokens locked in the staking pool.
 
 WIP
 
 \subsubsubsection{Staking Rewards}
+
+The reward for a miner producing a block is composed of three parts:
+
+$$
+R_{total} = R_{inflation} + R_{fees} + R_{endowment}
+$$
 
 \subsection{Economy Model}
 
@@ -222,17 +230,17 @@ For any storage platform to be valuable, it must be careful not to lose the data
 
 \subsubsection{Transaction Fee}
 
-The fee of data storage transaction is composed of the perpetual storage cost and one-shot bandwidth cost. The perpetual storage cost is basically modeled after Arweave.
+The fee of data storage transaction is composed of the perpetual storage cost and one-shot bandwidth cost. The perpetual storage cost is basically modeled after Arweave, on the belief that the cost of commercially available storage media has been decreasing at a significant rate over the last decades and this trend is foreseed to last for hundreds of years.
 
 \subsubsection{Data Oblivion}
 
-Specifically, the perpetual storage needs can be classified into two kinds: immortal and indefinite storage. The immortal storage means the file that is doomed to be preserved from the creation, such as the metadata of NFTs. The indefinite storage is such a kind of data that has an uncertainty of ending time, but can be deleted once it's used or the client simply does not wish the contract to be continued for any reason.
+Specifically, the perpetual storage needs can be classified into two kinds: immortal and indefinite storage. The immortal storage means the file that is doomed to be preserved from the creation, such as the metadata of NFTs. Indefinite storage is such a kind of data that has an uncertainty of ending time, but can be deleted once it's used or the client simply does not wish the contract to be continued for any reason.
 
-For these cases, Canyon supports the origin uploader choose to stop the contract and partially refund the charged perpetual storage fee. The files that have been refunded will be disqualified to be selected for the future storage consensus processure, thus the miners that keeps storing them will not be rewarded. For the sake of scarce storage resources, consequently the miners are expected to purge these data from the local storage, eventually they will be deleted from the network.
+For these cases, Canyon supports the origin uploader opts to terminate the contract and partially refund the charged perpetual storage fee. The files that have been refunded will be disqualified to be selected for the future storage consensus procedure, thus the miners that keep storing them will receive no rewards. For the sake of scarce storage resources, the miners are expected to purge these data from the local storage, consequently, the data will be deleted from the network sooner or later.
 
 \subsubsection{Payments}
 
-Canyon has an inherent advantage of easier interoperablity with the Polkadot\cite{ref4} ecosystem by using Substrate\cite{ref5}, which is the same framework Polkadot is built on. Canyon will support the users pay the storage fee by the stable coins like USDT, reducing the impact of the churn of token price on providing a stable storage service.
+An inherent advantage of Canyon is the easier interoperability with the Polkadot\cite{ref4} ecosystem by using Substrate\cite{ref5}, which is the same framework Polkadot is built on. Apart from the native token of Canyon CYN, Canyon will support the users pay the storage fee by introducing the stable coins like USDT from Polkadot network, reducing the impact of the churn of token price on providing a stable storage service for the custom.
 
 % \subsection{Transaction Pool}
 
@@ -240,14 +248,14 @@ Canyon has an inherent advantage of easier interoperablity with the Polkadot\cit
 
 \section{Conclusion}
 
-Canyon network is designed to be a permanent decentralized storage network, putting the emphsis on both lighter storage consensus and data retrieval. Being a permanent storage layer, Canyon is better suited for the storage-based computation paradigm.
+Canyon network is designed to be a permanent decentralized storage network, putting the emphasis on both light-weight storage consensus and highly-avaliable data retrieval. Being a permanent storage layer, Canyon is better suited for the storage-based computation paradigm.
 
 \begin{thebibliography}{99}
 \bibitem{ref1}Protocol Labs, Filecoin: A Decentralized Storage Network, \url{https://filecoin.io/filecoin.pdf}.
 \bibitem{ref2}\url{https://crust.network/}
 \bibitem{ref3}Sam Williams, Viktor Diordiiev, Lev Berman, India Raybould, Ivan Uemlianin. Arweave: A Protocol for Economically Sustainable Information Permanence.
-\bibitem{ref4} Gavid wood. Polkadot: Vision for A Heterogeneous Multi-chain Framework. \url{https://polkadot.network/PolkaDotPaper.pdf}
-\bibitem{ref5}\url{https://github.com/paritytech/substrate}
+\bibitem{ref4}Gavid wood. Polkadot: Vision for A Heterogeneous Multi-chain Framework. \url{https://polkadot.network/PolkaDotPaper.pdf}
+\bibitem{ref5}Substrate: The platform for blockchain innovators. \url{https://github.com/paritytech/substrate}
 % \bibitem{ref6}Vitalik buterin. An Incomplete Guide to Rollups, \url{https://vitalik.ca/general/2021/01/05/rollup.html}
 % \bibitem{ref7}A Storage-based Computation Paradigm Enabled by Arweave, \url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}
 % \bibitem{ref8}\url{https://ever.finance/}
