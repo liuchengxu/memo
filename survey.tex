@@ -15,6 +15,8 @@
 \SetWatermarkFontSize{6cm}
 \SetWatermarkText{Draft}
 
+\usepackage{tikz}
+
 %\usepackage{algorithm}
 %\usepackage{algorithmic}
 \usepackage[linesnumbered,boxed,ruled,commentsnumbered]{algorithm2e}
@@ -75,6 +77,22 @@
 
 \setcounter{secnumdepth}{4}
 
+% \usepackage[active,tightpage]{preview}
+% \PreviewEnvironment{tikzpicture}
+% \setlength{\PreviewBorder}{10pt}%
+
+\usetikzlibrary{arrows}
+
+\tikzset{
+  treenode/.style = {align=center, inner sep=4pt, text centered},
+  root_node/.style = {treenode, rectangle, draw=black, text width=6em},
+  arn_n/.style = {treenode, rectangle, draw=black, text width=4em},
+  c_node/.style = {treenode, rectangle, dashed, draw=black, text width=4em, very thick},
+  arn_r/.style = {treenode, rectangle, red, draw=black, text width=2em},
+  t_node/.style = {treenode, rectangle, red, fill=green, draw=black, text width=2em},
+  proof_node/.style = {treenode, rectangle, draw=blue, text width=2em, very thick},
+}
+
 \begin{document}
 
 \maketitle
@@ -93,7 +111,7 @@ Canyon is a permanent storage network built on Substrate, which records the hash
 
 \subsection{Motivation}
 
-It can't be denied that the storage infrastrusture is an essential part of Web 3.0 in the future.
+It can't be denied that the storage infrastrusture will be an essential part of Web 3.0 in the future.
 
 % \subsection{Organization}
 
@@ -134,13 +152,13 @@ In order to mine a block, a legitimate POA, which proves the block author has th
 
 \subsubsection{Proof of Access}
 
-In Arweave, the probability that a node can mine a block first is a function of the node’s hashing power relative to the average hashing power of all of the nodes in the network that also possess the recall block.
+In Arweave, the probability that a node can mine a block is a function of the node’s hashing power relative to the average hashing power of all of the nodes in the network that also possess the recall block.
 
 \begin{flalign}
   \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{finds hash first})
 \end{flalign}
 
-In Canyon, the probability that a node can mine a block is:
+In Canyon, 
 
 \begin{flalign}
     \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{claims slot})
@@ -185,9 +203,9 @@ The steps for generating the storage proof are as follows:
   \item Input the value of \code{parent\_hash} and \code{weave\_size} respectively. And depth is initialized to 1.
   \item Compute \code{recall\_byte}, i.e. a random byte in the network-wide data history ranging from 0 to \code{weave\_size}, excluding \code{weave\_size}.
   \item Find out the \code{recall\_tx} the contains the \code{recall\_byte} computed from the previous step.
-  \item If the miner has stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a Chunk (256KB) list, then create a \code{poa \{ data\_root, tx\_path, data\_path, Chunk \} }.
+  \item If the miner already has stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a list of chunks, then construct a storage proof \code{poa \{ tx\_path, chunk\_root, chunk\_path, chunk \} }(See \ref{poa}{ poa Data Structure }).
   \item If the miner does not have the data of \code{recall\_tx} locally, increase the value of \code{depth} by 1 and repeat the step 2 to 4.
-  \item Return poa.
+  \item Return \textbf{poa}.
 \end{enumerate}
 
 As you can see, if a node stores 100\% of data, the value of \code{depth} always remains 1. The node only needs to go through the above steps once every time when it attempts to generate a \code{poa} proof. If the node stores 50\% of data, the value of \code{depth} is expected to approach 2 as it produces enough blocks. If the node stores 10\% of data, the value of \code{depth} approaches 10.
@@ -230,13 +248,13 @@ For any storage platform to be valuable, it must be careful not to lose the data
 
 \subsubsection{Transaction Fee}
 
-The fee of data storage transaction is composed of the perpetual storage cost and one-shot bandwidth cost. The perpetual storage cost is basically modeled after Arweave, on the belief that the cost of commercially available storage media has been decreasing at a significant rate over the last decades and this trend is foreseed to last for hundreds of years.
+The fee of data storage transaction is composed of the perpetual storage cost and one-shot bandwidth cost. The perpetual storage cost is basically modeled after Arweave, on the observed pattern that the cost of commercially available storage media has been decreasing at a significant rate over the last decades and this trend is foreseed to last for hundreds of years.
 
 \subsubsection{Data Oblivion}
 
 Specifically, the perpetual storage needs can be classified into two kinds: immortal and indefinite storage. The immortal storage means the file that is doomed to be preserved from the creation, such as the metadata of NFTs. Indefinite storage is such a kind of data that has an uncertainty of ending time, but can be deleted once it's used or the client simply does not wish the contract to be continued for any reason.
 
-For these cases, Canyon supports the origin uploader opts to terminate the contract and partially refund the charged perpetual storage fee. The files that have been refunded will be disqualified to be selected for the future storage consensus procedure, thus the miners that keep storing them will receive no rewards. For the sake of scarce storage resources, the miners are expected to purge these data from the local storage, consequently, the data will be deleted from the network sooner or later.
+For these use cases, Canyon allows the origin uploader opts to terminate the contract and partially refund the charged perpetual storage fee. The files that have been refunded will be disqualified to be selected for the future storage consensus procedure, thus the miners that keep storing them will receive no rewards. For the sake of scarce storage resources, the miners are expected to purge these data from local storage, consequently, sooner or later, the data will be eliminated from the network.
 
 \subsubsection{Payments}
 
@@ -247,6 +265,7 @@ An inherent advantage of Canyon is the easier interoperability with the Polkadot
 % TODO
 
 \section{Conclusion}
+
 
 Canyon network is designed to be a permanent decentralized storage network, putting the emphasis on both light-weight storage consensus and highly-avaliable data retrieval. Being a permanent storage layer, Canyon is better suited for the storage-based computation paradigm.
 
@@ -263,5 +282,80 @@ Canyon network is designed to be a permanent decentralized storage network, putt
 
 \appendix
 \section{Appendix}
+
+\subsection{Data Structure}
+
+\subsubsection{poa}\label{poa}
+
+Each storage proof is composed of the following fields:
+
+\begin{itemize}
+    \item \textit{tx\_path}: Merkle path of recall transaction to the transaction root, which is included in the block header.
+    \item \textit{chunk\_root}: Merkle root of transaction data chunks.
+    \item \textit{chunk\_path}: Merkle path of \textit{chunk} to \textit{chunk\_root}.
+    \item \textit{chunk}: Raw bytes of recall chunk, at most 256 KiB.
+\end{itemize}
+
+There are two merkle proofs generated per poa: \textit{tx\_path} and \textit{chunk\_path}. With the origin \textit{chunk}, anyone can verify that the block author did have access to the data of recall transaction without downloading the entire data of that block. To be specific, everyone can verify the storage proof by merely downloading the block header, for the full content of poa is included in the header as a digest item.
+
+\begin{figure}
+% \begin{center}
+\begin{tikzpicture}[<-,>=stealth',level/.style={sibling distance = 7cm/#1, level distance = 2cm}]
+    \node [root_node] {TxRoot}
+    child{ node [c_node] {$H_{13}$}
+            child{ node [c_node] {$H_{9}$}
+                child{ node [t_node] {$H_1$ tx1}}
+                child{ node [proof_node] {$H_2$ \color{red}{tx2}}}
+            }
+            child{ node [proof_node] {$H_{10}$}
+                child{ node [arn_r] {$H_3$ tx3}}
+                child{ node [arn_r] {$H_4$ tx4}}
+            }
+    }
+    child{ node [proof_node] {$H_{14}$}
+            child{ node [arn_n] {$H_{11}$}
+                child{ node [arn_r] {$H_5$ tx5}}
+                child{ node [arn_r] {$H_6$ tx6}}
+            }
+            child{ node [arn_n] {$H_{12}$}
+                child{ node [arn_r] {$H_7$ tx7}}
+                child{ node [arn_r] {$H_8$ tx8}}
+            }
+    }
+;
+\end{tikzpicture}
+% \end{center}
+\caption{Tx Path}
+\end{figure}
+
+\begin{figure}
+% \begin{center}
+\begin{tikzpicture}[<-,>=stealth',level/.style={sibling distance = 7cm/#1, level distance = 2cm}]
+    \node [root_node] {ChunkRoot}
+    child{ node [c_node] {$C_{13}$}
+            child{ node [proof_node] {$C_{9}$}
+                child{ node [arn_r] {$C_1$}}
+                child{ node [arn_r] {$C_2$}}
+            }
+            child{ node [c_node] {$C_{10}$}
+                child{ node [proof_node] {$C_3$}}
+                child{ node [t_node] {$C_4$}}
+            }
+    }
+    child{ node [proof_node] {$C_{14}$}
+            child{ node [arn_n] {$C_{11}$}
+                child{ node [arn_r] {$C_5$}}
+                child{ node [arn_r] {$C_6$}}
+            }
+            child{ node [arn_n] {$C_{12}$}
+                child{ node [arn_r] {$C_7$}}
+                child{ node [arn_r] {$C_8$}}
+            }
+    }
+;
+\end{tikzpicture}
+% \end{center}
+\caption{Chunk Path}
+\end{figure}
 
 \end{document}
