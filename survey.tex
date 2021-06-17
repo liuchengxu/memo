@@ -1,6 +1,6 @@
 \documentclass[]{article}
 
-\title{Canyon: Permanent Storage Layer for Limitless Scalability}
+\title{Canyon: Permanent Storage Layer for Web3}
 \author{
     Liu-Cheng Xu\\
     \\
@@ -84,13 +84,14 @@
 \usetikzlibrary{arrows}
 
 \tikzset{
-  treenode/.style = {align=center, inner sep=4pt, text centered},
-  root_node/.style = {treenode, rectangle, draw=black, text width=6em},
-  arn_n/.style = {treenode, rectangle, draw=black, text width=4em},
-  c_node/.style = {treenode, rectangle, dashed, draw=black, text width=4em, very thick},
-  arn_r/.style = {treenode, rectangle, red, draw=black, text width=2em},
-  t_node/.style = {treenode, rectangle, red, fill=green, draw=black, text width=2em},
-  proof_node/.style = {treenode, rectangle, draw=blue, text width=2em, very thick},
+  basenode/.style = {align=center, inner sep=4pt, text centered},
+  root_node/.style = {basenode, rectangle, draw=black, text width=6em},
+  tree_node/.style = {basenode, rectangle, draw=black, text width=4em},
+  c_node/.style = {basenode, rectangle, dashed, draw=black, text width=4em, very thick},
+  leaf_node/.style = {basenode, rectangle, draw=black, text width=2em},
+  chunk_leaf_node/.style = {basenode, rectangle, fill=gray, draw=black, text width=2em},
+  t_node/.style = {basenode, rectangle, red, fill=green, draw=black, text width=2em},
+  proof_node/.style = {basenode, rectangle, draw=blue, text width=2em, very thick},
 }
 
 \begin{document}
@@ -111,7 +112,7 @@ Canyon is a permanent storage network built on Substrate, which records the hash
 
 \subsection{Motivation}
 
-It can't be denied that the storage infrastrusture will be an essential part of Web 3.0 in the future.
+It can't be denied that the storage infrastrusture will be an essential part of Web3 in the future.
 
 % \subsection{Organization}
 
@@ -158,7 +159,7 @@ In Arweave, the probability that a node can mine a block is a function of the no
   \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{finds hash first})
 \end{flalign}
 
-In Canyon, 
+In Canyon, a PoS-based system, the node is allowed to produce a block only when it succeeds in claiming the slot and owns the data of recall block:
 
 \begin{flalign}
     \hspace{5mm}   P(\text{win}) = P(\text{has recall block}) * P(\text{claims slot})
@@ -166,6 +167,7 @@ In Canyon,
 
 \IncMargin{1em}
 \begin{algorithm}
+    \label{algo:poa}
 
     \SetAlgoNoLine
     \SetKwInOut{Input}{\textbf{Input}}\SetKwInOut{Output}{\textbf{Output}}
@@ -197,13 +199,13 @@ In Canyon,
 \end{algorithm}
 \DecMargin{1em}
 
-The steps for generating the storage proof are as follows:
+The steps for generating the storage proof are as follows\footnote{This version is currently based on the initial consensus of Arweave Proof of Access instead of the new one Succinct Proofs of Random Access. The most noticeable change in SPoRA upgrade is that the miners now have to compute a slow hash to locate the random recall byte, rendering those who request data from the remote storage pool at a distinct disadvantage. To put it simply, $\Call{MultiHash}{S, x}$ in \ref{algo:poa}{ Algo 1} is replaced with a new slow hash.}:
 
 \begin{enumerate}
-  \item Input the value of \code{parent\_hash} and \code{weave\_size} respectively. And depth is initialized to 1.
+    \item Input the value of \code{parent\_hash} and \code{weave\_size} respectively. And \code{depth} is initialized to 1.
   \item Compute \code{recall\_byte}, i.e. a random byte in the network-wide data history ranging from 0 to \code{weave\_size}, excluding \code{weave\_size}.
   \item Find out the \code{recall\_tx} the contains the \code{recall\_byte} computed from the previous step.
-  \item If the miner already has stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a list of chunks, then construct a storage proof \code{poa \{ tx\_path, chunk\_root, chunk\_path, chunk \} }(See \ref{poa}{ poa Data Structure }).
+  \item If the miner already has stored the data of \code{recall\_tx} locally, extract the original data of \code{recall\_tx} and split the data into a list of chunks, then construct a storage proof \code{poa \{ depth, tx\_path, chunk\_root, chunk\_path, chunk \} }(See \ref{poa}{ poa Data Structure }).
   \item If the miner does not have the data of \code{recall\_tx} locally, increase the value of \code{depth} by 1 and repeat the step 2 to 4.
   \item Return \textbf{poa}.
 \end{enumerate}
@@ -228,9 +230,7 @@ With the knowledge of the storage capacity of nodes $R$, we can incentivize the 
 
 \subsubsubsection{Validator Election}
 
-The validators on Canyon network have two duties: author blocks as a virtual miner and provide unstoppable storage services. The security of a PoS system is rooted in the number of tokens locked in the staking pool.
-
-WIP
+The validators on Canyon network have two responsibilities: author blocks as a virtual miner and provide unstoppable storage services. The security of a PoS system is rooted in the number of tokens locked in the staking pool.
 
 \subsubsubsection{Staking Rewards}
 
@@ -260,12 +260,7 @@ For these use cases, Canyon allows the origin uploader opts to terminate the con
 
 An inherent advantage of Canyon is the easier interoperability with the Polkadot\cite{ref4} ecosystem by using Substrate\cite{ref5}, which is the same framework Polkadot is built on. Apart from the native token of Canyon CYN, Canyon will support the users pay the storage fee by introducing the stable coins like USDT from Polkadot network, reducing the impact of the churn of token price on providing a stable storage service for the custom.
 
-% \subsection{Transaction Pool}
-
-% TODO
-
 \section{Conclusion}
-
 
 Canyon network is designed to be a permanent decentralized storage network, putting the emphasis on both light-weight storage consensus and highly-avaliable data retrieval. Being a permanent storage layer, Canyon is better suited for the storage-based computation paradigm.
 
@@ -275,9 +270,6 @@ Canyon network is designed to be a permanent decentralized storage network, putt
 \bibitem{ref3}Sam Williams, Viktor Diordiiev, Lev Berman, India Raybould, Ivan Uemlianin. Arweave: A Protocol for Economically Sustainable Information Permanence.
 \bibitem{ref4}Gavid wood. Polkadot: Vision for A Heterogeneous Multi-chain Framework. \url{https://polkadot.network/PolkaDotPaper.pdf}
 \bibitem{ref5}Substrate: The platform for blockchain innovators. \url{https://github.com/paritytech/substrate}
-% \bibitem{ref6}Vitalik buterin. An Incomplete Guide to Rollups, \url{https://vitalik.ca/general/2021/01/05/rollup.html}
-% \bibitem{ref7}A Storage-based Computation Paradigm Enabled by Arweave, \url{https://medium.com/everfinance/a-storage-based-computation-paradigm-enabled-by-arweave-de799ae8c424}
-% \bibitem{ref8}\url{https://ever.finance/}
 \end{thebibliography}
 
 \appendix
@@ -290,72 +282,71 @@ Canyon network is designed to be a permanent decentralized storage network, putt
 Each storage proof is composed of the following fields:
 
 \begin{itemize}
+    \item \textit{depth}: the number of total attempts to construct a valid poa for producing block.
     \item \textit{tx\_path}: Merkle path of recall transaction to the transaction root, which is included in the block header.
     \item \textit{chunk\_root}: Merkle root of transaction data chunks.
     \item \textit{chunk\_path}: Merkle path of \textit{chunk} to \textit{chunk\_root}.
     \item \textit{chunk}: Raw bytes of recall chunk, at most 256 KiB.
 \end{itemize}
 
-There are two merkle proofs generated per poa: \textit{tx\_path} and \textit{chunk\_path}. With the origin \textit{chunk}, anyone can verify that the block author did have access to the data of recall transaction without downloading the entire data of that block. To be specific, everyone can verify the storage proof by merely downloading the block header, for the full content of poa is included in the header as a digest item.
+Technically, the way to prove the miner did store the data of recall block, is that it can be verifiably proved that the miner holds one piece of data belonging to that block, which requires two merkle proofs to be generated: \textit{tx\_path} and \textit{chunk\_path}. With the origin \textit{chunk}, anyone can verify that the block author did have access to the data of recall transaction without downloading the entire data of that block. Furthermore, everyone can verify the storage proof by merely downloading the block header, for the full content of poa is included in the header as a digest item.
 
 \begin{figure}
-% \begin{center}
 \begin{tikzpicture}[<-,>=stealth',level/.style={sibling distance = 7cm/#1, level distance = 2cm}]
     \node [root_node] {TxRoot}
     child{ node [c_node] {$H_{13}$}
             child{ node [c_node] {$H_{9}$}
-                child{ node [t_node] {$H_1$ tx1}}
-                child{ node [proof_node] {$H_2$ \color{red}{tx2}}}
+                child{ node [t_node] {{\color{black}{$H_1$}} $tx_1$}}
+                child{ node [proof_node] {$H_2$ \color{red}{$tx_2$}}}
             }
             child{ node [proof_node] {$H_{10}$}
-                child{ node [arn_r] {$H_3$ tx3}}
-                child{ node [arn_r] {$H_4$ tx4}}
+                child{ node [leaf_node] {{\color{black}{$H_3$}} \color{red}{$tx_3$}}}
+                child{ node [leaf_node] {{\color{black}{$H_4$}} \color{red}{$tx_4$}}}
             }
     }
     child{ node [proof_node] {$H_{14}$}
-            child{ node [arn_n] {$H_{11}$}
-                child{ node [arn_r] {$H_5$ tx5}}
-                child{ node [arn_r] {$H_6$ tx6}}
+            child{ node [tree_node] {$H_{11}$}
+                child{ node [leaf_node] {{\color{black}{$H_5$}} \color{red}{$tx_5$}}}
+                child{ node [leaf_node] {{\color{black}{$H_6$}} \color{red}{$tx_6$}}}
             }
-            child{ node [arn_n] {$H_{12}$}
-                child{ node [arn_r] {$H_7$ tx7}}
-                child{ node [arn_r] {$H_8$ tx8}}
+            child{ node [tree_node] {$H_{12}$}
+                child{ node [leaf_node] {{\color{black}{$H_7$}} \color{red}{$tx_7$}}}
+                child{ node [leaf_node] {{\color{black}{$H_8$}} \color{red}{$tx_8$}}}
             }
     }
 ;
 \end{tikzpicture}
-% \end{center}
 \caption{Tx Path}
 \end{figure}
 
+Assuming the recall byte is located in the chunk $C_4$ which is part of the data of $tx1$.
+
 \begin{figure}
-% \begin{center}
 \begin{tikzpicture}[<-,>=stealth',level/.style={sibling distance = 7cm/#1, level distance = 2cm}]
     \node [root_node] {ChunkRoot}
     child{ node [c_node] {$C_{13}$}
             child{ node [proof_node] {$C_{9}$}
-                child{ node [arn_r] {$C_1$}}
-                child{ node [arn_r] {$C_2$}}
+                child{ node [chunk_leaf_node] {$C_1$}}
+                child{ node [chunk_leaf_node] {$C_2$}}
             }
             child{ node [c_node] {$C_{10}$}
-                child{ node [proof_node] {$C_3$}}
-                child{ node [t_node] {$C_4$}}
+                child{ node [align=center, inner sep=4pt, text centered, rectangle, fill=gray, draw=blue, text width=2em, very thick] {$C_3$}}
+                child{ node [align=center, inner sep=4pt, text centered, rectangle, fill=gray, draw=green, text width=2em, very thick] {$C_4$}}
             }
     }
     child{ node [proof_node] {$C_{14}$}
-            child{ node [arn_n] {$C_{11}$}
-                child{ node [arn_r] {$C_5$}}
-                child{ node [arn_r] {$C_6$}}
+            child{ node [tree_node] {$C_{11}$}
+                child{ node [chunk_leaf_node] {$C_5$}}
+                child{ node [chunk_leaf_node] {$C_6$}}
             }
-            child{ node [arn_n] {$C_{12}$}
-                child{ node [arn_r] {$C_7$}}
-                child{ node [arn_r] {$C_8$}}
+            child{ node [tree_node] {$C_{12}$}
+                child{ node [chunk_leaf_node] {$C_7$}}
+                child{ node [chunk_leaf_node] {$C_8$}}
             }
     }
 ;
 \end{tikzpicture}
-% \end{center}
-\caption{Chunk Path}
+    \caption{Chunk Path: the transaction data of $tx_1$ is segmented into 256-kilobyte chunks(gray).}
 \end{figure}
 
 \end{document}
